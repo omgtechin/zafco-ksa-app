@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../../provider/auth_provider.dart';
 
-const baseUrl = "https://beta.zafco.ae";
+const baseUrl = "https://beta.zafco.sa";
 
 class Constant {
   String comingSoonImg =
