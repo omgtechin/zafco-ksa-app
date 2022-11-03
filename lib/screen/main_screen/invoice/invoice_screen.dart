@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:number_paginator/number_paginator.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../core/app_bar.dart';
 import '../../../../core/enum/connection_status.dart';
 import '../../../../screen/main_screen/invoice/widget/invoice_filter.dart';
 import '../../../../widget/loading_idicator.dart';
-
 import '../../../core/enum/user_type.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/cart_provider.dart';
@@ -50,10 +51,10 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
     return Scaffold(
         appBar: getAppBar(
             title: Text(
-              "Invoices",
+              AppLocalizations.of(context)!.invoices,
               style: TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
             context: context),
@@ -96,7 +97,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                               controller: _controller,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'Search Here',
+                                hintText: AppLocalizations.of(context)!.search,
                               ),
                               onSubmitted: (String? val) {
                                 if (val != null) {
@@ -170,7 +171,8 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                 if (invoiceData.connectionStatus == ConnectionStatus.done) {
                   return invoiceData.invoiceModel.invoices.data.isEmpty
                       ? Center(
-                          child: Text("No Order Found"),
+                    child: Text(
+                              AppLocalizations.of(context)!.noInvoiceFound),
                         )
                       : ListView.builder(
                           shrinkWrap: true,
@@ -199,7 +201,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                             height: 12,
                                           ),
                                           Text(
-                                            "Showing ${invoiceData.invoiceModel.invoices.from} to ${invoiceData.invoiceModel.invoices.to} of ${invoiceData.invoiceModel.invoices.total} Invoices",
+                                            "${AppLocalizations.of(context)!.showing} ${invoiceData.invoiceModel.invoices.from} ${AppLocalizations.of(context)!.to} ${invoiceData.invoiceModel.invoices.to} ${AppLocalizations.of(context)!.ofKey} ${invoiceData.invoiceModel.invoices.total} ${AppLocalizations.of(context)!.invoices}",
                                             style: TextStyle(
                                               fontSize: 16,
                                             ),
@@ -257,7 +259,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                 } else if (invoiceData.connectionStatus ==
                     ConnectionStatus.error) {
                   return Center(
-                    child: Text("Something went wrong"),
+                    child: Text(AppLocalizations.of(context)!.wrongText),
                   );
                 } else {
                   return Center(

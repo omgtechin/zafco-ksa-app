@@ -11,6 +11,7 @@ import '../../../../core/routes.dart';
 import '../core/cache_client.dart';
 import '../core/enum/connection_status.dart';
 import '../model/data_model/uesr_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthProvider with ChangeNotifier {
   final Constant _constant = Constant();
@@ -119,6 +120,7 @@ class AuthProvider with ChangeNotifier {
   Future<bool> deactivateAccount({required BuildContext context}) async {
     http.Response response =
         await http.post(Uri.parse("$baseUrl/api/deactivateAccount"));
+
     if (response.statusCode == 200) {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.clear();
@@ -127,7 +129,7 @@ class AuthProvider with ChangeNotifier {
           .pushReplacementNamed(Screen.initialScreen.toString());
       return true;
     } else {
-      Constant().getToast(title: "Something went wrong");
+      Constant().getToast(title: AppLocalizations.of(context)!.wrongText);
       return false;
     }
   }

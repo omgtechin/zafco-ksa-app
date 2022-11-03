@@ -118,6 +118,7 @@ class SalesOrderProvider with ChangeNotifier {
         body: jsonEncode(postBody),
       );
 
+      print(response.body);
       salesOrderDetailModel =
           SalesOrderDetailModel.fromJson(jsonDecode(response.body));
       getSalesOrderDetailStatus = ConnectionStatus.done;

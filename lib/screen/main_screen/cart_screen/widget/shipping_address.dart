@@ -6,6 +6,7 @@ import '../../../../provider/cart_provider.dart';
 import '../../../../screen/main_screen/cart_screen/widget/address_card.dart';
 
 import '../../../../model/data_model/shipping_info_modal.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShippingAddress extends StatefulWidget {
   final List<ShippingAddresses> shippingAddresses;
@@ -32,7 +33,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
             height: 18,
           ),
           Text(
-            "Shipping Address",
+            AppLocalizations.of(context)!.shippingAddress,
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constant.dart';
 import '../../../../provider/auth_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../core/enum/user_type.dart';
 import '../model/data_model/sales_order_model.dart';
@@ -16,6 +18,22 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  String  getTitle(String title){
+      String lowerTitle = title.trim().toLowerCase();
+      if(lowerTitle == "order created"){
+      return  AppLocalizations.of(context)!.orderCreated;
+      }else if(lowerTitle == "pending for credit check"){
+        return  AppLocalizations.of(context)!.pendingForCreditCheck;
+      }else if(lowerTitle == "completed"){
+        return  AppLocalizations.of(context)!.completed;
+      }else if(lowerTitle == "cancelled"){
+        return  AppLocalizations.of(context)!.cancelled;
+      }
+
+      else{
+        return title;
+    }
+    }
     Constant _constsnt = Constant();
     var userData = Provider.of<AuthProvider>(context);
     buildDetails({required String title, required String data}) {
@@ -50,38 +68,38 @@ class OrderCard extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          buildDetails(title: "Sales Order", data: order.orderCode),
+          buildDetails(title: AppLocalizations.of(context)!.salesOrder, data: order.orderCode),
           if (userData.userDetail.userType == UserType.employee)
             SizedBox(
               height: 12,
             ),
           if (userData.userDetail.userType == UserType.employee)
             buildDetails(
-                title: "Customer",
+                title: AppLocalizations.of(context)!.customer,
                 data: Constant()
                     .getUserName(userId: order.userId, context: context)),
           SizedBox(
             height: 12,
           ),
-          buildDetails(title: "Order Date", data: order.createdAt),
+          buildDetails(title: AppLocalizations.of(context)!.orderDate, data: order.createdAt),
           SizedBox(
             height: 12,
           ),
-          buildDetails(title: "Price", data: "AED ${order.amountTotal}"),
+          buildDetails(title:AppLocalizations.of(context)!.price, data: "AED ${order.amountTotal}"),
           SizedBox(
             height: 8,
           ),
           Row(
             children: [
 
-              Expanded(child: Text("Stauts", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),)),
+              Expanded(child: Text(AppLocalizations.of(context)!.status, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),)),
 
 
               Expanded(
                 flex: 2,
 
                 child:  Text(
-                  order.status,
+                  getTitle(order.status),
                   style: TextStyle(
                     color: _constsnt.getStatusColor(status: order.status),fontSize: 15,fontWeight: FontWeight.w700
                   ),
@@ -99,7 +117,7 @@ class OrderCard extends StatelessWidget {
             onPressed: () {
               onTap();
             },
-            icon: Text("View"),
+            icon: Text(AppLocalizations.of(context)!.view),
             label: Icon(
               Icons.image_search,
             ),

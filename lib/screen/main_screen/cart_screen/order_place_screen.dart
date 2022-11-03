@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/routes.dart';
 import '../../../../core/themes/app_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderPlacedScreen extends StatelessWidget {
   const OrderPlacedScreen({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class OrderPlacedScreen extends StatelessWidget {
               flex: 1,
             ),
             Text(
-              "Order  Successfully Placed",
+              AppLocalizations.of(context)!.orderSuccessfullyPlaced,
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
@@ -48,7 +49,7 @@ class OrderPlacedScreen extends StatelessWidget {
                   });
                 },
                 child: Text(
-                  "View Sales Orders",
+                  AppLocalizations.of(context)!.viewSalesOrders,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w700,

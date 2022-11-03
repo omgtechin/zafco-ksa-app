@@ -11,6 +11,7 @@ import '../../provider/cart_provider.dart';
 import '../core/enum/connection_status.dart';
 import '../model/user_defiend_model/shop_tag.dart';
 import 'auth_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShopProvider with ChangeNotifier {
   ConnectionStatus connectionStatus = ConnectionStatus.none;
@@ -112,11 +113,11 @@ class ShopProvider with ChangeNotifier {
       if (json["status"] == 1) {
         return true;
       } else {
-        _constant.getToast(title: "Something went wrong");
+        _constant.getToast(title: AppLocalizations.of(context)!.wrongText);
         return false;
       }
     } catch (e) {
-      _constant.getToast(title: "Something went wrong");
+      _constant.getToast(title: AppLocalizations.of(context)!.wrongText);
       return false;
     }
   }
@@ -158,7 +159,7 @@ class ShopProvider with ChangeNotifier {
           .getCartCount(context: context);
       _constant.getToast(title: jsonDecode(response.body)["message"]);
     } catch (e) {
-      _constant.getToast(title: "Something went wrong");
+      _constant.getToast(title: AppLocalizations.of(context)!.wrongText);
     }
   }
 

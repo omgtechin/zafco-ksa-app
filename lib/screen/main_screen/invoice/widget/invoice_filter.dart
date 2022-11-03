@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:zafco_ksa/provider/localization_provider.dart';
+
 import '../../../../provider/invoice_provider.dart';
 
 class InvoiceFilter extends StatelessWidget {
@@ -8,6 +11,27 @@ class InvoiceFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var localizationProvider =
+        Provider.of<LocalizationProvider>(context, listen: false);
+    String getTitle(String title) {
+      String lowerCase = title.toLowerCase();
+      if (lowerCase == "all") {
+        return AppLocalizations.of(context)!.all;
+      } else if (lowerCase == "paid") {
+        return AppLocalizations.of(context)!.paid;
+      } else if (lowerCase == "in payment") {
+        return AppLocalizations.of(context)!.inPayment;
+      } else if (lowerCase == "partially paid") {
+        return AppLocalizations.of(context)!.partiallyPaid;
+      } else if (lowerCase == "reversed") {
+        return AppLocalizations.of(context)!.reversed;
+      } else if (lowerCase == "not paid") {
+        return AppLocalizations.of(context)!.notPaid;
+      } else {
+        return title;
+      }
+    }
+
     return Consumer<InvoiceProvider>(builder: (context, invoiceProvider, _) {
       return Container(
         height: 35,
@@ -15,9 +39,10 @@ class InvoiceFilter extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: [
-            SizedBox(
-              width: 12,
-            ),
+            if (localizationProvider.isLTR)
+              SizedBox(
+                width: 12,
+              ),
             ...invoiceProvider.filters.map((filter) {
               int idx = invoiceProvider.filters.indexOf(filter);
               bool isSelected = idx ==
@@ -39,7 +64,7 @@ class InvoiceFilter extends StatelessWidget {
                         border:
                             Border.all(color: Theme.of(context).primaryColor)),
                     child: Text(
-                      filter.title,
+                      getTitle(filter.title),
                       style: TextStyle(
                           color: isSelected
                               ? Colors.white
@@ -49,7 +74,11 @@ class InvoiceFilter extends StatelessWidget {
                   ),
                 ),
               );
-            }).toList()
+            }).toList(),
+            if (!localizationProvider.isLTR)
+              SizedBox(
+                width: 12,
+              ),
           ],
         ),
       );

@@ -16,6 +16,8 @@ import '../../../core/routes.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../widget/customer_selector.dart';
 import '../../../widget/loading_idicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShippingInfoScreen extends StatefulWidget {
   const ShippingInfoScreen({Key? key}) : super(key: key);
@@ -41,8 +43,8 @@ class _ShippingInfoPageState extends State<ShippingInfoScreen> {
         return Scaffold(
           appBar: getAppBar(
               title: Text(
-                "Checkout",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                AppLocalizations.of(context)!.checkout,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700,color: Colors.black),
               ),
               context: context),
           bottomNavigationBar: CartButton(
@@ -53,7 +55,7 @@ class _ShippingInfoPageState extends State<ShippingInfoScreen> {
                     width: 30,
                     height: 30,
                     child: CircularProgressIndicator(color: Colors.white,)):
-            Text("Place Order",style: TextStyle(color: Colors.white),),
+            Text( AppLocalizations.of(context)!.shippingInfo,style: TextStyle(color: Colors.white),),
             onTap: () {
               data.checkout(context: context);
 
@@ -113,8 +115,8 @@ class _ShippingInfoPageState extends State<ShippingInfoScreen> {
         return Scaffold(
           appBar: getAppBar(
               title: Text(
-                "Checkout",
-                style: TextStyle(fontSize: 20),
+                AppLocalizations.of(context)!.checkout,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700,color: Colors.black),
               ),
               context: context),
           body: Column(
@@ -129,7 +131,7 @@ class _ShippingInfoPageState extends State<ShippingInfoScreen> {
                     }),
               Spacer(),
               Center(
-                child: Text("Your cart is empty"),
+                child: Text( AppLocalizations.of(context)!.yourCartIsEmpty),
               ),
               Spacer(),
             ],

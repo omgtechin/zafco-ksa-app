@@ -1,7 +1,10 @@
+import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../provider/localization_provider.dart';
 import '../../../../screen/main_screen/shop/widget/quantity_selector.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/constant.dart';
 import '../../../../provider/shop_provider.dart';
@@ -60,6 +63,8 @@ class _ProductCardState extends State<ShopProductCard> {
 
   @override
   Widget build(BuildContext context) {
+    var localizationProvider = Provider.of<LocalizationProvider>(context,listen: false);
+
     bool leftBound = quantity == 0;
     bool rightBound = quantity >= int.parse(widget.stock) || quantity >= 100;
     return Stack(
@@ -190,14 +195,14 @@ class _ProductCardState extends State<ShopProductCard> {
                           Row(
                             children: [
                               Expanded(
-                                  flex: 1,
+                                  flex: 2,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "SKU",
+     AppLocalizations.of(context)!.sku,
                                         style: TextStyle(
                                             color:
                                                 Theme.of(context).primaryColor),
@@ -211,7 +216,7 @@ class _ProductCardState extends State<ShopProductCard> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Year",
+                                    AppLocalizations.of(context)!.year,
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor),
                                   ),
@@ -225,7 +230,7 @@ class _ProductCardState extends State<ShopProductCard> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Stock",
+                                    AppLocalizations.of(context)!.stock,
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor),
                                   ),
@@ -247,7 +252,7 @@ class _ProductCardState extends State<ShopProductCard> {
               ),
               Row(
                 children: [
-                  Text("AED ${widget.price}.00",
+                  Text("AED ${widget.price}",
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),
                   Spacer(),
@@ -265,8 +270,12 @@ class _ProductCardState extends State<ShopProductCard> {
                               ? Theme.of(context).primaryColor.withOpacity(.5)
                               : Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              bottomLeft: Radius.circular(8))),
+                            topRight: Radius.circular(localizationProvider.isLTR?0: 8),
+                            bottomRight: Radius.circular(localizationProvider.isLTR?0: 8),
+                            topLeft: Radius.circular(localizationProvider.isLTR?8: 0),
+                            bottomLeft: Radius.circular(localizationProvider.isLTR?8: 0),
+
+                          )),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 2.0, vertical: 4),
@@ -324,8 +333,12 @@ class _ProductCardState extends State<ShopProductCard> {
                               ? Theme.of(context).primaryColor.withOpacity(.5)
                               : Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(8),
-                              bottomRight: Radius.circular(8))),
+                              topRight: Radius.circular(localizationProvider.isLTR?8: 0),
+                              bottomRight: Radius.circular(localizationProvider.isLTR?8: 0),
+                              topLeft: Radius.circular(localizationProvider.isLTR?0: 8),
+                              bottomLeft: Radius.circular(localizationProvider.isLTR?0: 8),
+
+                          )),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 2.0, vertical: 4),
@@ -371,7 +384,7 @@ class _ProductCardState extends State<ShopProductCard> {
                             ),
                           )
                         : Text(
-                            "Add to cart",
+                      AppLocalizations.of(context)!.addtocart,
                             style: TextStyle(color: Colors.white),
                           ),
                     style: ElevatedButton.styleFrom(
@@ -388,17 +401,21 @@ class _ProductCardState extends State<ShopProductCard> {
         if (widget.promotions.isNotEmpty)
           Positioned(
             top: 8,
-            child: Image.asset(
-              "assets/label.png",
-              height: widget.promotions.length > 1 ? 50 : 40,
-              width: 65,
-              fit: BoxFit.fill,
+            child: Transform.rotate(
+              angle:localizationProvider.isLTR? 0: math.pi,
+              child: Image.asset(
+                "assets/label.png",
+                height: widget.promotions.length > 1 ? 50 : 40,
+                width: 65,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         if (widget.promotions.isNotEmpty)
           Positioned(
             top: 10,
-            left: 8,
+            right: localizationProvider.isLTR? 0: 8,
+            left: localizationProvider.isLTR? 8: 0,
             child: GestureDetector(
               onTap: () => showDialog(
                   context: context,
@@ -417,7 +434,7 @@ class _ProductCardState extends State<ShopProductCard> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Offers",
+                                  AppLocalizations.of(context)!.offers,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 22),
@@ -450,13 +467,13 @@ class _ProductCardState extends State<ShopProductCard> {
                               children: [
                                 ...widget.promotions
                                     .map((promotion) => Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 4.0),
-                                          child: Text(
-                                            promotion,
-                                            style: TextStyle(fontSize: 14),
-                                          ),
-                                        ))
+                                  padding: const EdgeInsets.only(
+                                      bottom: 4.0),
+                                  child: Text(
+                                    promotion,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ))
                                     .toList(),
                                 SizedBox(
                                   height: 12,

@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names, cast_nullable_to_non_nullable
 
 import 'package:flutter/material.dart';
+import 'package:zafco_ksa/screen/auth_screen/language_selection_screen.dart';
+
 import '../screen/auth_screen/forget_password_screen.dart';
 import '../screen/auth_screen/login_screen.dart';
 import '../screen/auth_screen/signin_screen.dart';
@@ -34,13 +36,12 @@ enum Screen {
   catalogueScreen,
   userOfferScreen,
   salespersonScreen,
-  contactUsScreen
+  contactUsScreen,
+  languageSelectionScreen,
 }
 
 class Router {
-  // final _overviewInitialCubit = OverViewInitialCubit();
-  // final _cartCubit = CartCubit();
-  // final _myCourseCubit = MyCoursesCubit();
+
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     final screen =
@@ -126,6 +127,11 @@ class Router {
       case Screen.contactUsScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => ContactUsScreen(),
+        );
+
+      case Screen.languageSelectionScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => LanguageSelectionScreen(),
         );
 
       default:

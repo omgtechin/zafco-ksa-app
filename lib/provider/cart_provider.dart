@@ -12,6 +12,7 @@ import '../core/enum/connection_status.dart';
 import '../core/routes.dart';
 import '../model/data_model/shipping_info_modal.dart';
 import 'auth_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartProvider with ChangeNotifier {
   ConnectionStatus connectionStatus = ConnectionStatus.none;
@@ -98,7 +99,7 @@ class CartProvider with ChangeNotifier {
           context: context);
       await loadCartPage(context: context);
     } catch (e) {
-      _constant.getToast(title: "Something went wrong");
+      _constant.getToast(title: AppLocalizations.of(context)!.wrongText);
     }
   }
 
@@ -125,7 +126,7 @@ class CartProvider with ChangeNotifier {
       cartCount = cartCount - qty;
       await loadCartPage(context: context);
     } catch (e) {
-      _constant.getToast(title: "Something went wrong");
+      _constant.getToast(title: AppLocalizations.of(context)!.wrongText);
     }
   }
 
@@ -149,7 +150,7 @@ class CartProvider with ChangeNotifier {
       cartCount = 0;
       await loadCartPage(context: context);
     } catch (e) {
-      _constant.getToast(title: "Something went wrong");
+      _constant.getToast(title: AppLocalizations.of(context)!.wrongText);
     }
   }
 
@@ -186,7 +187,7 @@ class CartProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       buttonLoadingStatus = ConnectionStatus.error;
-      _constant.getToast(title: "Something went wrong");
+      _constant.getToast(title: AppLocalizations.of(context)!.wrongText);
     } finally {
       notifyListeners();
     }

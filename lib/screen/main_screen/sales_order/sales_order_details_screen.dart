@@ -10,6 +10,7 @@ import '../../../../screen/main_screen/sales_order/widget/sales_order_pricing.da
 import '../../../../screen/main_screen/sales_order/widget/sales_order_shipping.dart';
 import '../../../../widget/custom_icon_button.dart';
 import '../../../../widget/loading_idicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/constant.dart';
 
@@ -177,7 +178,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                       height: 12,
                     ),
                     Text(
-                      "Invoicing and Shipping Address",
+                        AppLocalizations.of(context)!.invoicingAndShippingAddress,
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
                     ),
@@ -185,7 +186,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                       height: 8,
                     ),
                     Text(
-                      "Invoice Address",
+                      AppLocalizations.of(context)!.invoiceAddress,
                       style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
@@ -198,7 +199,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                     SizedBox(
                       height: 12,
                     ),
-                    Text("Shipping Address",
+                    Text(AppLocalizations.of(context)!.shippingAddress,
                         style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
@@ -249,7 +250,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Salesperson",
+                          AppLocalizations.of(context)!.salesperson,
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 14),
                         ),
@@ -268,7 +269,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
                             child: Text(
-                              "Send Mail",
+                                AppLocalizations.of(context)!.sendMail,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 14),
@@ -327,11 +328,11 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                         CustomIconButton(
                             icon: Icons.email_outlined, onTap: () {}, size: 30),
                         SizedBox(
-                          width: 8,
+                          width: 4,
                         ),
                         Text(
                           salesPerson.email,
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 13),
                         ),
                         Spacer(),
                         CustomIconButton(
@@ -340,11 +341,11 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                           size: 30,
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 4,
                         ),
                         Text(
                           salesPerson.phone,
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 13),
                         ),
                       ],
                     ),
@@ -375,7 +376,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
               height: 24,
             ),
             Text(
-              "Payment terms",
+              AppLocalizations.of(context)!.paymentTerms,
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
@@ -397,7 +398,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
     }
 
     return Scaffold(
-      appBar: getAppBar(title: Text("Sales Orders"), context: context),
+      appBar: getAppBar(title: Text(AppLocalizations.of(context)!.salesOrders,style: TextStyle(color: Colors.black,fontSize: 16),), context: context),
       body: Consumer<SalesOrderProvider>(builder: (context, salesData, _) {
         if (salesData.getSalesOrderDetailStatus == ConnectionStatus.done) {
           return SingleChildScrollView(
@@ -410,7 +411,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                   height: 10,
                 ),
                 Text(
-                  "Sales Orders " +
+                  AppLocalizations.of(context)!.salesOrders + " " +
                       salesData.salesOrderDetailModel.orderDetails.orderCode,
                   style: TextStyle(
                       fontSize: 18,
@@ -423,14 +424,14 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
                 Row(
                   children: [
                     buildDetailCard(
-                        title: "Amount",
+                        title: AppLocalizations.of(context)!.amount,
                         data:
                             "AED ${salesData.salesOrderDetailModel.orderDetails.amountTotal}"),
                     SizedBox(
                       width: 12,
                     ),
                     buildDetailCard(
-                        title: "Order Date",
+                        title: AppLocalizations.of(context)!.orderDate,
                         data:
                             "${salesData.salesOrderDetailModel.orderDetails.createdAt}"),
                   ],
@@ -497,7 +498,7 @@ class _SalesOrderDetailScreenState extends State<SalesOrderDetailScreen> {
           );
         } else if (salesData.getSalesOrderDetailStatus ==
             ConnectionStatus.error) {
-          return Center(child: Text("Something went wrong"));
+          return Center(child: Text(AppLocalizations.of(context)!.wrongText),);
         } else {
           return Center(
             child: LoadingIndicator(),

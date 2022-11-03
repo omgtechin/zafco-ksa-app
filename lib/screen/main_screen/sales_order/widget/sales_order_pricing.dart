@@ -7,6 +7,7 @@ import '../../../../model/data_model/sales_order_detail_model.dart';
 
 import '../../../../core/constant.dart';
 import '../../../../provider/sales_order_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SalesOrderPricing extends StatelessWidget {
   final List<OrderItems> orderItems;
@@ -33,7 +34,7 @@ class SalesOrderPricing extends StatelessWidget {
         Row(
           children: [
             Text(
-              "Pricing",
+              AppLocalizations.of(context)!.pricing,
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
@@ -65,7 +66,7 @@ class SalesOrderPricing extends StatelessWidget {
                             strokeWidth: 2,
                           ))
                       : Text(
-                          "Download Proforma",
+                    AppLocalizations.of(context)!.downloadProforma,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
                               fontSize: 14),
@@ -88,7 +89,7 @@ class SalesOrderPricing extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Text(
-                      "Products",
+                      AppLocalizations.of(context)!.products,
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
                     ),
@@ -96,7 +97,7 @@ class SalesOrderPricing extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "QTY",
+                          AppLocalizations.of(context)!.quantity,
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 14),
                       ),
@@ -105,7 +106,7 @@ class SalesOrderPricing extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "Amount",
+                        AppLocalizations.of(context)!.amount,
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 14),
                       ),
@@ -178,7 +179,7 @@ class SalesOrderPricing extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Sub Total",
+                    AppLocalizations.of(context)!.subTotal,
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
                   ),
                   Spacer(),
@@ -200,7 +201,7 @@ class SalesOrderPricing extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "VAT-TAX 5%",
+                    AppLocalizations.of(context)!.vat5,
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
                   ),
                   Spacer(),
@@ -223,7 +224,7 @@ class SalesOrderPricing extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Total",
+                    AppLocalizations.of(context)!.total,
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
                   ),
                   Spacer(),

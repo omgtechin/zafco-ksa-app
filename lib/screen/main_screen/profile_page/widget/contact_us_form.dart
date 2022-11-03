@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../core/constant.dart';
 import '../../../../provider/profile_provider.dart';
-
 class ContactUsForm extends StatefulWidget {
   const ContactUsForm({Key? key}) : super(key: key);
 
@@ -31,7 +32,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
       return TextFormField(
         style: formInputStyle,
         decoration: InputDecoration(
-          labelText: " First Name *",
+          labelText: "${AppLocalizations.of(context)!.firstName} *",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -39,7 +40,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         onChanged: (value) => setState(() => firstName = value),
         validator: (value) {
           if (value!.isEmpty) {
-            return "Enter Fist name";
+            return AppLocalizations.of(context)!.firstNameIsRequired;
           } else {
             return null;
           }
@@ -51,7 +52,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
       return TextFormField(
         style: formInputStyle,
         decoration: InputDecoration(
-          labelText: " Last Name *",
+          labelText: "${AppLocalizations.of(context)!.lastName} *",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -59,7 +60,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         onChanged: (value) => setState(() => lastName = value),
         validator: (value) {
           if (value!.isEmpty) {
-            return "Enter Last name";
+            return AppLocalizations.of(context)!.lastNameIsRequired;
           } else {
             return null;
           }
@@ -72,7 +73,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         keyboardType: TextInputType.emailAddress,
         style: formInputStyle,
         decoration: InputDecoration(
-          labelText: "Email *",
+          labelText: "${AppLocalizations.of(context)!.email} *",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -80,7 +81,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         onChanged: (value) => setState(() => email = value),
         validator: (value) {
           if (value!.isEmpty) {
-            return "Enter email";
+            return AppLocalizations.of(context)!.emailIsRequired;
           } else {
             return null;
           }
@@ -93,7 +94,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         keyboardType: TextInputType.number,
         style: formInputStyle,
         decoration: InputDecoration(
-          labelText: "Phone number *",
+          labelText: "${AppLocalizations.of(context)!.phoneNumber} *",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -101,7 +102,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         onChanged: (value) => setState(() => phone = value),
         validator: (value) {
           if (value!.isEmpty) {
-            return "Enter phone number";
+            return AppLocalizations.of(context)!.phoneIsRequired;
           } else {
             return null;
           }
@@ -113,7 +114,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
       return TextFormField(
         style: formInputStyle,
         decoration: InputDecoration(
-          labelText: "Your Company Name *",
+          labelText: "${AppLocalizations.of(context)!.yourCompanyName} *",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -121,7 +122,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         onChanged: (value) => setState(() => companyName = value),
         validator: (value) {
           if (value!.isEmpty) {
-            return "Enter company name";
+            return AppLocalizations.of(context)!.companyIsRequired;
           } else {
             return null;
           }
@@ -133,7 +134,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
       return TextFormField(
         style: formInputStyle,
         decoration: InputDecoration(
-          labelText: "Subject *",
+          labelText: "${AppLocalizations.of(context)!.subject} *",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -141,7 +142,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         onChanged: (value) => setState(() => subject = value),
         validator: (value) {
           if (value!.isEmpty) {
-            return "Enter subject";
+            return AppLocalizations.of(context)!.subjectIsRequired;
           } else {
             return null;
           }
@@ -154,7 +155,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         style: formInputStyle,
         maxLines: 5,
         decoration: InputDecoration(
-          labelText: "Your Question *",
+          labelText: "${AppLocalizations.of(context)!.yourQuestion} *",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -162,7 +163,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
         onChanged: (value) => setState(() => question = value),
         validator: (value) {
           if (value!.isEmpty) {
-            return "Enter question";
+          return  AppLocalizations.of(context)!.questionIsRequired;
           } else {
             return null;
           }
@@ -201,7 +202,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
                 color: Colors.white,
               )
             : Text(
-                "Submit".toUpperCase(),
+          AppLocalizations.of(context)!.submit,
                 style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
@@ -224,7 +225,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
               Padding(
                 padding: EdgeInsets.only(left: formFiledPadding),
                 child: Text(
-                  "Contact Us",
+                  AppLocalizations.of(context)!.contactUs,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
               ),

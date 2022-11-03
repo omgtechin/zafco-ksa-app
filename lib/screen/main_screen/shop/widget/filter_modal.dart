@@ -5,6 +5,7 @@ import '../../../../core/adaptive/adaptive.dart';
 
 import '../../../../model/data_model/shop_model.dart';
 import '../../../../provider/shop_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShopFilterModal extends StatefulWidget {
   const ShopFilterModal({Key? key}) : super(key: key);
@@ -28,6 +29,34 @@ class _ShopFilterModalState extends State<ShopFilterModal> {
 
     return Consumer<ShopProvider>(builder: (context, shopData, _) {
       var attributes = shopData.shopModel.attributes;
+
+      String getLocation(String title) {
+        String lowerTitle = title.toLowerCase().trim();
+        if (lowerTitle == "all") {
+          return AppLocalizations.of(context)!.allLocations;
+        }
+        return title;
+      }
+
+      String getFilterTitle(String title){
+        String lowerTitle = title.toLowerCase().trim();
+        if (lowerTitle == "select rim size") {
+          return AppLocalizations.of(context)!.rimSize;
+        }else if(lowerTitle == "select size"){
+          return AppLocalizations.of(context)!.selectSize;
+        }else if(lowerTitle == "select category"){
+          return AppLocalizations.of(context)!.selectCategory;
+        }else if(lowerTitle == "select pattern"){
+          return AppLocalizations.of(context)!.selectTyrePattern;
+        }else if(lowerTitle == "select brand"){
+          return AppLocalizations.of(context)!.selectBrand;
+        }else if(lowerTitle == "select segment"){
+          return AppLocalizations.of(context)!.selectSegment;
+        }else if(lowerTitle == "select year"){
+          return AppLocalizations.of(context)!.selectProductionYear;
+        }
+        return title;
+      }
       return SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 18),
@@ -37,8 +66,8 @@ class _ShopFilterModalState extends State<ShopFilterModal> {
               Row(
                 children: [
                   Text(
-                    "Filter & Sort",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    AppLocalizations.of(context)!.filter,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   ),
                   Spacer(),
                   TextButton(
@@ -46,7 +75,7 @@ class _ShopFilterModalState extends State<ShopFilterModal> {
                         shopData.resetAllFilters();
                       },
                       child: Text(
-                        "Clear all",
+                        AppLocalizations.of(context)!.clearAll,
                         style: TextStyle(color: Theme.of(context).primaryColor),
                       ))
                 ],
@@ -70,7 +99,9 @@ class _ShopFilterModalState extends State<ShopFilterModal> {
                   child: Row(
                     children: [
                       Text(
-                        shopData.shopModel.location![shopData.selectedLocationIdx].title),
+
+                          getLocation(
+                        shopData.shopModel.location![shopData.selectedLocationIdx].title)),
                       Spacer(),
                   Icon(
                     Icons.keyboard_arrow_down_sharp,
@@ -109,7 +140,7 @@ class _ShopFilterModalState extends State<ShopFilterModal> {
                           Row(
                             children: [
                               Text(
-                                filter.title,
+                                getFilterTitle(  filter.title),
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black.withOpacity(.7)),
@@ -144,7 +175,7 @@ class _ShopFilterModalState extends State<ShopFilterModal> {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text(
-                                                  e.title,
+                                                 e.title,
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 14),
@@ -174,7 +205,7 @@ class _ShopFilterModalState extends State<ShopFilterModal> {
                       .getFilterData(context: context);
                 },
                 child: Text(
-                  "Apply Filters",
+                  AppLocalizations.of(context)!.applyFilters,
                   style: TextStyle(color: Colors.white),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -207,10 +238,29 @@ class FilterItemModal extends StatefulWidget {
 class _FilterItemModalState extends State<FilterItemModal> {
   @override
   Widget build(BuildContext context) {
+    String getFilterTitle(String title){
+      String lowerTitle = title.toLowerCase().trim();
+      if (lowerTitle == "select rim size") {
+        return AppLocalizations.of(context)!.rimSize;
+      }else if(lowerTitle == "select size"){
+        return AppLocalizations.of(context)!.selectSize;
+      }else if(lowerTitle == "select category"){
+        return AppLocalizations.of(context)!.selectCategory;
+      }else if(lowerTitle == "select pattern"){
+        return AppLocalizations.of(context)!.selectTyrePattern;
+      }else if(lowerTitle == "select brand"){
+        return AppLocalizations.of(context)!.selectBrand;
+      }else if(lowerTitle == "select segment"){
+        return AppLocalizations.of(context)!.selectSegment;
+      }else if(lowerTitle == "select year"){
+        return AppLocalizations.of(context)!.selectProductionYear;
+      }
+      return title;
+    }
     return Dialog(
         insetPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         child: Container(
-          height: widget.filterList.length * 40.h,
+          height: widget.filterList.length * 60.h,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,9 +269,9 @@ class _FilterItemModalState extends State<FilterItemModal> {
                 height: 14,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 16.0),
+                padding: const EdgeInsets.only(left: 16.0, right: 16),
                 child: Text(
-                  widget.title,
+                  getFilterTitle(widget.title),
                   style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
                 ),
               ),
@@ -323,11 +373,20 @@ class _FilterItemModalState extends State<FilterItemModal> {
 }
 
 class SelectLocationModal extends StatelessWidget {
+
   const SelectLocationModal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var shopProvider = Provider.of<ShopProvider>(context,listen: false);
+
+    String getLocation(String title) {
+      String lowerTitle = title.toLowerCase().trim();
+      if (lowerTitle == "all") {
+        return AppLocalizations.of(context)!.allLocations;
+      }
+      return title;
+    }
     return  Dialog(
         insetPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
     child: Column(
@@ -338,7 +397,7 @@ class SelectLocationModal extends StatelessWidget {
           height: 14,
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 16.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16),
           child: Text(
             "Select Location",
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
@@ -368,7 +427,7 @@ class SelectLocationModal extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        element.title,
+                        getLocation(element.title),
                         style: TextStyle(
                             fontSize: 14,
                             color:isSelected

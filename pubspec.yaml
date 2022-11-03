@@ -63,6 +63,10 @@ dependencies:
   rename: ^2.0.1
   flutter_email_sender: ^5.1.0
   cached_network_image: ^3.2.2
+  toggle_switch: ^2.0.1
+
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +81,7 @@ flutter_icons:
   image_path: "assets/appicon.png"
 
 flutter:
+  generate: true
 
   uses-material-design: true
 

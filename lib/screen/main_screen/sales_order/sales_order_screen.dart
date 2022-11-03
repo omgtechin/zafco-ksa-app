@@ -15,6 +15,7 @@ import '../../../core/enum/user_type.dart';
 import '../../../provider/cart_provider.dart';
 import '../../../widget/customer_selector.dart';
 import '../../../widget/order_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SalesOrderScreen extends StatefulWidget {
   const SalesOrderScreen({Key? key}) : super(key: key);
@@ -53,9 +54,9 @@ class _SalesOrderScreenState extends State<SalesOrderScreen> {
     return Scaffold(
       appBar: getAppBar(
           title: Text(
-            "Sales Order",
+         AppLocalizations.of(context)!.salesOrder,
             style: TextStyle(
-                fontSize: 22, fontWeight: FontWeight.w500, color: Colors.black),
+                fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           context: context),
       body: Column(
@@ -98,7 +99,7 @@ class _SalesOrderScreenState extends State<SalesOrderScreen> {
                                   controller: _controller,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: 'Search Here',
+                                    hintText:  AppLocalizations.of(context)!.search,
                                   ),
                                   onSubmitted: (String? val) {
                                     if (val != null) {
@@ -155,7 +156,6 @@ class _SalesOrderScreenState extends State<SalesOrderScreen> {
                   icon: Icons.calendar_today_outlined,
                   onTap: () async {
                     var pickedData = await showDatePicker(
-                      confirmText: "APPLY",
                       context: context,
                       firstDate: DateTime(2019),
                       lastDate: DateTime.now(),
@@ -205,7 +205,7 @@ class _SalesOrderScreenState extends State<SalesOrderScreen> {
                                   height: 18,
                                 ),
                                 Text(
-                                  "Showing ${data.salesOrderModel.orders.from} to ${data.salesOrderModel.orders.to} of ${data.salesOrderModel.orders.total} Orders",
+                                  "${AppLocalizations.of(context)!.showing} ${data.salesOrderModel.orders.from} ${AppLocalizations.of(context)!.to} ${data.salesOrderModel.orders.to} ${AppLocalizations.of(context)!.ofKey} ${data.salesOrderModel.orders.total} ${AppLocalizations.of(context)!.orders}",
                                   style: TextStyle(
                                     fontSize: 16,
                                   ),
@@ -255,7 +255,7 @@ class _SalesOrderScreenState extends State<SalesOrderScreen> {
                 return Center(child: LoadingIndicator());
               } else {
                 return Center(
-                  child: Text("No Product Found"),
+                  child: Text(AppLocalizations.of(context)!.noProductsFound),
                 );
               }
             }),

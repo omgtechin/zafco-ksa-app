@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../provider/cart_provider.dart';
 import '../../../../screen/main_screen/sales_order/sales_order_screen.dart';
 import '../../../../screen/main_screen/shop/shop_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'dashboard/dashboard_screen.dart';
 import 'invoice/invoice_screen.dart';
@@ -59,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
                 height: 18,
                 color: primaryColor,
               ),
-              label: "Invoices",
+              label: AppLocalizations.of(context)!.invoices,
             ),
             BottomNavigationBarItem(
                 icon: Image.asset(getIcon("sales_order"),height: 26,),
@@ -68,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
                   height: 26,
                   color: primaryColor,
                 ),
-                label: "Sales Order"),
+                label: AppLocalizations.of(context)!.salesOrder),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.dashboard_outlined,
@@ -76,11 +77,11 @@ class _MainScreenState extends State<MainScreen> {
                 activeIcon: Icon(
                   Icons.dashboard_outlined,
                 ),
-                label: "Dashboard"),
+                label: AppLocalizations.of(context)!.dashboard),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_bag_outlined),
                 activeIcon: Icon(Icons.shopping_bag_outlined),
-                label: "Shop"),
+                label: AppLocalizations.of(context)!.shop),
           ],
           type: BottomNavigationBarType.fixed,
           onTap: (index) async {

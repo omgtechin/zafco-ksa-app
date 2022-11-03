@@ -72,5 +72,6 @@ class CacheClient {
 class CashClientKey{
   static String loginId = "loginId";
   static String loginKey = "loginKey";
+  static String language = "languageKey";
 }
 

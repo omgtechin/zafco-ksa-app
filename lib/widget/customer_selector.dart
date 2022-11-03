@@ -51,7 +51,7 @@ class _CustomerSelectorState extends State<CustomerSelector> {
         },
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 12),
-          padding: EdgeInsets.only(left: 8),
+          padding: EdgeInsets.only(left: 8,right: 8),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(4)),
               border: Border.all(color: Theme.of(context).primaryColor)),

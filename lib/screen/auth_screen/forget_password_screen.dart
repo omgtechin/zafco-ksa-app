@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../provider/auth_provider.dart';
 import '../../../../screen/auth_screen/widget/auth_input_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
               height: height * .04,
             ),
             Text(
-              "Forgot Password",
+              AppLocalizations.of(context)!.forgotPassword,
               style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
               height: 20,
             ),
             Text(
-              "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
+                AppLocalizations.of(context)!.forgotPasswordText,
               style:
                   TextStyle(color: Colors.white.withOpacity(.9), fontSize: 14),
             ),
@@ -61,8 +62,8 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
             AuthInputField(
               inputController: emailController,
               inputType: TextInputType.emailAddress,
-              hintText: "name@example.com",
-              label: "Email",
+              hintText: AppLocalizations.of(context)!.enterEmail,
+              label: AppLocalizations.of(context)!.email,
             ),
             SizedBox(
               height: 20,
@@ -104,7 +105,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
                         child: InkWell(
                       onTap: () => Navigator.of(context).pop(),
                       child: Text(
-                        "Login now!",
+                        AppLocalizations.of(context)!.loginNow,
                         style: TextStyle(
                           color: Colors.blue,
                           fontSize: 13,
@@ -141,7 +142,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
                             color: Colors.white,
                           )
                         : Text(
-                            "Submit",
+                      AppLocalizations.of(context)!.submit,
                             style: TextStyle(color: Colors.white),
                           ))),
             SizedBox(

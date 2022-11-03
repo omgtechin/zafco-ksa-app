@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../screen/auth_screen/widget/auth_input_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../provider/auth_provider.dart';
 
@@ -19,6 +20,7 @@ class _LoginScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 18),
@@ -42,7 +44,7 @@ class _LoginScreenState extends State<SignInScreen> {
               height: height * .04,
             ),
             Text(
-              "Activate your \nAccount",
+              AppLocalizations.of(context)!.activateYourAccount,
               style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
@@ -52,7 +54,7 @@ class _LoginScreenState extends State<SignInScreen> {
               height: 30,
             ),
             Text(
-              "Enter your email and we will send the steps to activate your account.",
+              AppLocalizations.of(context)!.activateAccountText,
               style:
                   TextStyle(color: Colors.white.withOpacity(.8), fontSize: 15),
             ),
@@ -62,8 +64,8 @@ class _LoginScreenState extends State<SignInScreen> {
             AuthInputField(
               inputController: emailController,
               inputType: TextInputType.emailAddress,
-              hintText: "name@example.com",
-              label: "Email",
+              hintText: AppLocalizations.of(context)!.enterEmail,
+              label: AppLocalizations.of(context)!.email,
             ),
             SizedBox(height: 20,),
 
@@ -88,7 +90,7 @@ class _LoginScreenState extends State<SignInScreen> {
                   textAlign: TextAlign.center,
                   text: TextSpan(children: [
                     TextSpan(
-                        text: "Already a zafco member? ",
+                        text: AppLocalizations.of(context)!.alreadyAZafcoMember + " ",
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.white.withOpacity(.9),
@@ -97,7 +99,7 @@ class _LoginScreenState extends State<SignInScreen> {
                         child: InkWell(
                       onTap: () => Navigator.of(context).pop(),
                       child: Text(
-                        "Login now!",
+                        AppLocalizations.of(context)!.loginNow,
                         style: TextStyle(
                           color: Colors.blue,
                           fontSize: 13,
@@ -131,7 +133,7 @@ class _LoginScreenState extends State<SignInScreen> {
                             color: Colors.white,
                           )
                         : Text(
-                            "Activate Account",
+                      AppLocalizations.of(context)!.activateAccount,
                             style: TextStyle(color: Colors.white),
                           ))),
             SizedBox(

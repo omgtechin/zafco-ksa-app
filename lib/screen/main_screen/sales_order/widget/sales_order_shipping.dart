@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/themes/app_theme.dart';
-import '../../../../provider/sales_order_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/constant.dart';
 import '../../../../core/enum/connection_status.dart';
 import '../../../../core/services/pdf_download_service.dart';
 import '../../../../provider/auth_provider.dart';
+import '../../../../provider/sales_order_provider.dart';
 
 class DeliveryOrders extends StatefulWidget {
   final int id;
@@ -79,7 +79,7 @@ class _SalesInvoiceState extends State<DeliveryOrders> {
                               height: 12,
                             ),
                             Text(
-                              "Delivery Orders",
+                              AppLocalizations.of(context)!.deliveryOrders,
                               style: TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 14),
                             ),
@@ -88,7 +88,8 @@ class _SalesInvoiceState extends State<DeliveryOrders> {
                             ),
                             shippings.length == 0
                                 ? Text(
-                                    "No Invoice Found",
+                              AppLocalizations.of(context)!
+                                        .noInvoiceFound,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
                                         color: Colors.black54),
@@ -112,25 +113,25 @@ class _SalesInvoiceState extends State<DeliveryOrders> {
                                             Expanded(
                                                 flex: 2,
                                                 child: Text(
-                                                  "Shipping",
+                                                  AppLocalizations.of(context)!.shipping,
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 )),
                                             Expanded(
                                                 child: Text(
-                                              "Date",
+                                                  AppLocalizations.of(context)!.date,
                                               style: TextStyle(
                                                   color: Colors.white),
                                             )),
                                             Expanded(
                                                 child: Text(
-                                              "Status",
+                                                  AppLocalizations.of(context)!.status,
                                               style: TextStyle(
                                                   color: Colors.white),
                                             )),
                                             Expanded(
                                                 child: Text(
-                                              "Action",
+                                                  AppLocalizations.of(context)!.action,
                                               style: TextStyle(
                                                   color: Colors.white),
                                             ))
@@ -339,7 +340,7 @@ class _SalesInvoiceState extends State<DeliveryOrders> {
                       height: 8,
                     ),
                     Text(
-                      "Delivery Orders",
+                      AppLocalizations.of(context)!.deliveryOrders,
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
                     ),
@@ -351,7 +352,7 @@ class _SalesInvoiceState extends State<DeliveryOrders> {
                             Spacer(),
                             salesData.getOrderShippingStatus ==
                                     ConnectionStatus.error
-                                ? const Text("Something went wrong")
+                                ?  Text(AppLocalizations.of(context)!.wrongText)
                                 : CircularProgressIndicator(),
                             Spacer(),
                           ],

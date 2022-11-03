@@ -7,6 +7,7 @@ import '../../../../core/constant.dart';
 import '../../../../screen/main_screen/cart_screen/widget/cart_button.dart';
 import '../../../../screen/main_screen/cart_screen/widget/cart_product_card.dart';
 import '../../../../screen/main_screen/cart_screen/widget/order_summary.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/enum/connection_status.dart';
 import '../../../core/enum/user_type.dart';
@@ -47,10 +48,10 @@ class _CartScreenState extends State<CartScreen> {
           -1) {
         return Scaffold(
           appBar: getAppBar(
-              title: Text(
-                "Checkout",
-                style: TextStyle(fontSize: 20),
-              ),
+                title: Text(
+                  AppLocalizations.of(context)!.checkout,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700,color: Colors.black),
+                ),
               context: context),
           body: Column(
             children: [
@@ -69,13 +70,13 @@ class _CartScreenState extends State<CartScreen> {
         return Scaffold(
           appBar: getAppBar(
               title: Text(
-                "Checkout",
-                style: TextStyle(fontSize: 20),
+                AppLocalizations.of(context)!.checkout,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700,color: Colors.black),
               ),
               context: context),
           bottomNavigationBar: CartButton(
             title: Text(
-              "Shipping Info",
+              AppLocalizations.of(context)!.shippingInfo,
               style: TextStyle(color: Colors.white),
             ),
             onTap: () {
@@ -83,7 +84,7 @@ class _CartScreenState extends State<CartScreen> {
                   .pushNamed(Screen.shippingInfoScreen.toString());
             },
             price:
-                "AED ${data.cartModel.orderSummary.orderQuantity.subTotal.toStringAsFixed(2)}",
+                "AED ${data.cartModel.orderSummary.orderQuantity.grandTotal.toStringAsFixed(2)}",
           ),
           body: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
@@ -123,7 +124,7 @@ class _CartScreenState extends State<CartScreen> {
                                   Row(
                                     children: [
                                       Text(
-                                        "Cart",
+                                        AppLocalizations.of(context)!.cart,
                                         style: TextStyle(
                                             color:
                                                 Theme.of(context).primaryColor,
@@ -139,7 +140,7 @@ class _CartScreenState extends State<CartScreen> {
                                             );
                                           },
                                           child: Text(
-                                            "Clear All",
+                                            AppLocalizations.of(context)!.clearAll,
                                             style: TextStyle(
                                                 color: Theme.of(context)
                                                     .primaryColor,
@@ -188,8 +189,8 @@ class _CartScreenState extends State<CartScreen> {
         return Scaffold(
           appBar: getAppBar(
               title: Text(
-                "Checkout",
-                style: TextStyle(fontSize: 20),
+                AppLocalizations.of(context)!.checkout,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700,color: Colors.black),
               ),
               context: context),
           body: Column(
@@ -204,7 +205,7 @@ class _CartScreenState extends State<CartScreen> {
                     }),
               Spacer(),
               Center(
-                child: Text("Your cart is empty"),
+                child: Text(AppLocalizations.of(context)!.yourCartIsEmpty),
               ),
               Spacer(),
             ],

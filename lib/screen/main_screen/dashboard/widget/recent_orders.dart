@@ -5,6 +5,8 @@ import '../../../../widget/order_card.dart';
 
 import '../../../../core/routes.dart';
 import '../../../../model/data_model/dashboard_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class RecentOrders extends StatelessWidget {
   final DashboardModel data;
@@ -53,11 +55,11 @@ class RecentOrders extends StatelessWidget {
             ),
             Row(
               children: [
-                buildDetail(title: "Sales Order", value: order.orderCode),
+                buildDetail(title:  AppLocalizations.of(context)!.salesOrder, value: order.orderCode),
                 SizedBox(
                   width: 8,
                 ),
-                buildDetail(title: "Order Date", value: order.createdAt),
+                buildDetail(title:  AppLocalizations.of(context)!.orderDate, value: order.createdAt),
                 buildDetail(
                     title: "Customer Id", value: order.customerId.toString()),
               ],
@@ -100,7 +102,7 @@ class RecentOrders extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Recent Orders",
+                AppLocalizations.of(context)!.recentOrders,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -114,7 +116,7 @@ class RecentOrders extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pushReplacementNamed(Screen.mainScreen.toString(), arguments: {"pageId" :1});
                     },
-                    child: Text("View All"),
+                    child: Text( AppLocalizations.of(context)!.viewAll),
                   )),
             ],
           ),

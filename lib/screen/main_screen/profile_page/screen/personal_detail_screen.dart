@@ -6,6 +6,7 @@ import '../../../../core/constant.dart';
 import '../../../../core/enum/connection_status.dart';
 import '../../../../provider/profile_provider.dart';
 import '../../../../widget/loading_idicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PersonalDetailScreen extends StatefulWidget {
   const PersonalDetailScreen({Key? key}) : super(key: key);
@@ -75,8 +76,8 @@ class _PersonalDetailScreenState extends State<PersonalDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Personal Details",
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+          AppLocalizations.of(context)!.personalDetails,
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20, color: Colors.black),
         ),
       ),
       body: Consumer<ProfileProvider>(builder: (context, data, _) {
@@ -86,6 +87,7 @@ class _PersonalDetailScreenState extends State<PersonalDetailScreen> {
             padding: EdgeInsets.symmetric(horizontal: 12),
             child: Column(
               children: [
+                SizedBox(height: 16,),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                   width: double.infinity,
@@ -94,7 +96,7 @@ class _PersonalDetailScreenState extends State<PersonalDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Personal Details",
+                          AppLocalizations.of(context)!.personalDetails,
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -104,12 +106,12 @@ class _PersonalDetailScreenState extends State<PersonalDetailScreen> {
                           height: 12,
                         ),
                         buildDetailCard(
-                            title: "Email", subTitle: userData.email ?? ""),
+                            title: AppLocalizations.of(context)!.email, subTitle: userData.email ?? ""),
                         SizedBox(
                           height: 12,
                         ),
                         buildDetailCard(
-                            title: "Phone", subTitle: userData.phone),
+                            title: AppLocalizations.of(context)!.phoneNumber, subTitle: userData.phone),
                       ]),
                 ),
                 SizedBox(
@@ -123,7 +125,7 @@ class _PersonalDetailScreenState extends State<PersonalDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                     Text(
-                          "Billing Address",
+                      AppLocalizations.of(context)!.billingAddress,
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -147,7 +149,7 @@ class _PersonalDetailScreenState extends State<PersonalDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Shipping Address",
+                          AppLocalizations.of(context)!.shippingAddress,
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -167,7 +169,7 @@ class _PersonalDetailScreenState extends State<PersonalDetailScreen> {
           );
         } else if (data.connectionStatus == ConnectionStatus.error) {
           return Center(
-            child: Text("Something went wrong"),
+            child: Text(AppLocalizations.of(context)!.wrongText),
           );
         } else {
           return Center(

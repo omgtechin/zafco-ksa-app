@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SalesSortFilterModal extends StatefulWidget {
   const SalesSortFilterModal({Key? key}) : super(key: key);
@@ -131,7 +132,7 @@ class _SalesSortFilterModalState extends State<SalesSortFilterModal> {
                       style: ElevatedButton.styleFrom(
                           primary: Theme.of(context).primaryColor),
                       child: Text(
-                        "Apply Filters",
+                        AppLocalizations.of(context)!.applyFilters,
                         style: TextStyle(color: Colors.white),
                       )),
                 ),

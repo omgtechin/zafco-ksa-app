@@ -1,13 +1,14 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../core/adaptive/adaptive.dart';
 import '../../../../core/constant.dart';
 import '../../../../core/enum/user_type.dart';
+import '../../../../core/services/pdf_download_service.dart';
 import '../../../../model/data_model/dashboard_model.dart';
 import '../../../../provider/auth_provider.dart';
-
-import '../../../../core/services/pdf_download_service.dart';
 import '../../../../widget/custom_icon_button.dart';
 
 class DashboardDetails extends StatelessWidget {
@@ -100,7 +101,7 @@ class DashboardDetails extends StatelessWidget {
               width: 12,
             ),
             Text(
-              "Next Payment Due Date",
+                AppLocalizations.of(context)!.nextPaymentDue,
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
             Spacer(),
@@ -146,13 +147,13 @@ class DashboardDetails extends StatelessWidget {
               width: 12,
             ),
             Text(
-              "Statement of Account",
+                AppLocalizations.of(context)!.statementOfAccount,
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
             Spacer(),
             Container(
               height: 38,
-              width: 160,
+              width: 170,
               child: OutlinedButton(
 
 
@@ -196,7 +197,7 @@ class DashboardDetails extends StatelessWidget {
                }
 
                 },
-                child: Text("Download SOA"),
+                child: Text(AppLocalizations.of(context)!.downloadSOA),
                 style: OutlinedButton.styleFrom(),
               ),
             ),
@@ -239,7 +240,7 @@ class DashboardDetails extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Salesperson",
+                        AppLocalizations.of(context)!.salesperson,
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 14),
                         ),
@@ -259,7 +260,7 @@ class DashboardDetails extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
                             child: Text(
-                              "Send Mail",
+                                AppLocalizations.of(context)!.sendMail,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 14),
@@ -350,16 +351,16 @@ class DashboardDetails extends StatelessWidget {
           Row(
             children: [
               buildSquareCard(
-                  title: "Orders", data: data.salesOrder.toString(),subTitle: "(Current Year Only)"),
+                  title: AppLocalizations.of(context)!.orders, data: data.salesOrder.toString(),subTitle: "(${AppLocalizations.of(context)!.currentYearOnly})"),
               SizedBox(
                 width: 12,
               ),
               buildSquareCard(
-                  title: "Statement of Account", data: data.statementOfAccount),
+                  title: AppLocalizations.of(context)!.statementOfAccount, data: data.statementOfAccount),
               SizedBox(
                 width: 12,
               ),
-              buildSquareCard(title: "Ticket", data: data.tickets),
+              buildSquareCard(title: AppLocalizations.of(context)!.tickets, data: data.tickets),
             ],
           ),
           if (isCustomer)
@@ -381,16 +382,16 @@ class DashboardDetails extends StatelessWidget {
           ),
           Row(
             children: [
-              buildSquareCard(title: "Invoice", data: data.invoices.toString(),subTitle: "(Current Year Only)"),
+              buildSquareCard(title:  AppLocalizations.of(context)!.invoice, data: data.invoices.toString(),subTitle: "(${ AppLocalizations.of(context)!.currentYearOnly})"),
               SizedBox(
                 width: 12,
               ),
               buildSquareCard(
-                  title: "Current Outstanding", data:"AED " + data.currentOutstanding),
+                  title:  AppLocalizations.of(context)!.currentOutstanding, data:"AED " + data.currentOutstanding),
               SizedBox(
                 width: 12,
               ),
-              buildSquareCard(title: "Overdue", data:"AED "+ data.overdue , color: Colors.red),
+              buildSquareCard(title: AppLocalizations.of(context)!.overdue, data:"AED "+ data.overdue , color: Colors.red),
             ],
           ),
         ],

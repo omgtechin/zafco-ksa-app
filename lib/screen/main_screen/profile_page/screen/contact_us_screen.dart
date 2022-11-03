@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/constant.dart';
 import '../widget/contact_us_form.dart';
-
 class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({Key? key}) : super(key: key);
 
@@ -66,29 +66,36 @@ class _PersonalDetailScreenState extends State<ContactUsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Contact Us",
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+          AppLocalizations.of(context)!.contactUs,
+          style: TextStyle(
+              fontWeight: FontWeight.w700, fontSize: 20, color: Colors.black),
         ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
-            buildDetailCard(title: "Call Us", data: "+971 800-92326"),
+            buildDetailCard(
+                title: AppLocalizations.of(context)!.callUs,
+                data: "+971 800-92326"),
             SizedBox(
               height: 12,
             ),
-            buildDetailCard(title: "Mail Us", data: "uaesales@zafco.com"),
+            buildDetailCard(
+                title: AppLocalizations.of(context)!.mailUs,
+                data: "uaesales@zafco.com"),
             SizedBox(
               height: 12,
             ),
-            buildDetailCard(title: "Our Location", data: "ZAFCO, \nJebel Ali Free Zone (South), Dubai, United Arab Emirates"),
+            buildDetailCard(
+                title: AppLocalizations.of(context)!.ourLocation,
+                data:
+                    "ZAFCO, \nJebel Ali Free Zone (South), Dubai, United Arab Emirates"),
             SizedBox(
               height: 24,
             ),
-          ContactUsForm(
-
-      ), ],
+            ContactUsForm(),
+          ],
         ),
       ),
     );

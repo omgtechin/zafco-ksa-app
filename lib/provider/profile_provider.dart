@@ -11,6 +11,7 @@ import '../core/constant.dart';
 import '../core/enum/connection_status.dart';
 import '../model/data_model/catalogue_model.dart';
 import 'auth_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileProvider with ChangeNotifier {
   late PersonalDetailModel personalDetailModel;
@@ -111,9 +112,7 @@ class ProfileProvider with ChangeNotifier {
         },
         body: jsonEncode(postBody),
       );
-      print(postBody);
-      print("salesperson");
-      print(response.body);
+
       userSalesPersonModel =
           UserSalesPersonModel.fromJson(jsonDecode(response.body));
       connectionStatus = ConnectionStatus.done;
@@ -158,7 +157,7 @@ class ProfileProvider with ChangeNotifier {
 
       Constant().getToast(title:jsonDecode(response.body)["message"]);
     } catch (e) {
-      Constant().getToast(title: "Something went wrong");
+      Constant().getToast(title: AppLocalizations.of(context)!.wrongText);
     }
   }
 }

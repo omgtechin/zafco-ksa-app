@@ -9,6 +9,7 @@ import '../../../../core/constant.dart';
 import '../../../../core/enum/connection_status.dart';
 import '../../../../core/services/pdf_download_service.dart';
 import '../../../../provider/auth_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SalesInvoice extends StatefulWidget {
   final int orderId;
@@ -65,7 +66,7 @@ class _SalesInvoiceState extends State<SalesInvoice> {
                         height: 12,
                       ),
                       Text(
-                        "Invoices",
+                        AppLocalizations.of(context)!.invoice,
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 14),
                       ),
@@ -74,7 +75,7 @@ class _SalesInvoiceState extends State<SalesInvoice> {
                       ),
                       invoices.length == 0
                           ? Text(
-                              "Yet to Invoice",
+                        AppLocalizations.of(context)!.yetToInvoice,
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   color: Colors.black54),
@@ -96,23 +97,23 @@ class _SalesInvoiceState extends State<SalesInvoice> {
                                       Expanded(
                                           flex: 2,
                                           child: Text(
-                                            "Invoice",
+                                            AppLocalizations.of(context)!.invoice,
                                             style:
                                                 TextStyle(color: Colors.white),
                                           )),
                                       Expanded(
                                           child: Text(
-                                        "Date",
+                                            AppLocalizations.of(context)!.date,
                                         style: TextStyle(color: Colors.white),
                                       )),
                                       Expanded(
                                           child: Text(
-                                        "Status",
+                                            AppLocalizations.of(context)!.status,
                                         style: TextStyle(color: Colors.white),
                                       )),
                                       Expanded(
                                           child: Text(
-                                        "Action",
+                                            AppLocalizations.of(context)!.action,
                                         style: TextStyle(color: Colors.white),
                                       ))
                                     ],
@@ -277,7 +278,7 @@ class _SalesInvoiceState extends State<SalesInvoice> {
                             Spacer(),
                             salesData.getOrderInvoiceStatus ==
                                     ConnectionStatus.error
-                                ? const Text("Something went wrong")
+                                ?  Text(AppLocalizations.of(context)!.wrongText)
                                 : CircularProgressIndicator(),
                             Spacer(),
                           ],

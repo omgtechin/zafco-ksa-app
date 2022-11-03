@@ -4,9 +4,8 @@
 
 import 'package:flutter/material.dart';
 import '../../../../model/data_model/dashboard_model.dart';
-import '../../../../screen/main_screen/shop/widget/shop_product_card.dart';
-import '../../../../widget/order_card.dart';
-import '../../../../widget/product_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import '../../../../core/routes.dart';
 import 'dashboard_product_card.dart';
@@ -27,7 +26,7 @@ class BestSellers extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Best Sellers Orders",
+                    AppLocalizations.of(context)!.bestSellers,
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -35,7 +34,7 @@ class BestSellers extends StatelessWidget {
                   ),
                   Spacer(),
                   Container(
-                      width: 100,
+                      width: 110,
                       height: 35,
                       child: OutlinedButton(
                         onPressed: () {
@@ -44,7 +43,7 @@ class BestSellers extends StatelessWidget {
                               arguments: {"pageId": 3,"filterType":"best"});
 
                         },
-                        child: Text("View All"),
+                        child: Text(AppLocalizations.of(context)!.viewAll),
                       )),
                 ],
               ),

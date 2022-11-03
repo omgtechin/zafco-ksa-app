@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
+import '../core/adaptive/adaptive.dart';
 import '../core/routes.dart' as router;
 import '../core/routes.dart';
 import '../core/themes/app_theme.dart';
 import '../provider/auth_provider.dart';
+import '../provider/cart_provider.dart';
 import '../provider/dashboard_provider.dart';
+import '../provider/invoice_provider.dart';
+import '../provider/localization_provider.dart';
 import '../provider/profile_provider.dart';
 import '../provider/sales_order_provider.dart';
 import '../provider/shop_provider.dart';
-
-import '../core/adaptive/adaptive.dart';
-import '../provider/cart_provider.dart';
-import '../provider/invoice_provider.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -48,6 +50,7 @@ class AppState extends State<App> {
         ChangeNotifierProvider(create: (context) => SalesOrderProvider()),
         ChangeNotifierProvider(create: (context) => InvoiceProvider()),
         ChangeNotifierProvider(create: (context) => ProfileProvider()),
+        ChangeNotifierProvider(create: (context) => LocalizationProvider()),
       ],
       child: const AppLanding(),
     );
@@ -78,14 +81,22 @@ class AppLandingState extends State<AppLanding> {
           builder: (orientationContext, orientation) {
             AppTheme.setStatusBarAndNavigationBarColors(ThemeMode.system);
             return AdaptiveUtilInit(
-              builder: () => MaterialApp(
-                  navigatorKey: App.navigatorKey,
-                  debugShowCheckedModeBanner: false,
-                  theme: AppTheme.lightTheme,
-                  darkTheme: AppTheme.lightTheme,
-                  onGenerateRoute: _routes.generateRoute,
-                  initialRoute: Screen.initialScreen.toString()),
-            );
+                builder: () => Consumer<LocalizationProvider>(
+                        builder: (context, localProvider, _) {
+                      return MaterialApp(
+                        navigatorKey: App.navigatorKey,
+                        debugShowCheckedModeBanner: false,
+                        theme: AppTheme.lightTheme,
+                        darkTheme: AppTheme.lightTheme,
+                        onGenerateRoute: _routes.generateRoute,
+                        initialRoute: Screen.initialScreen.toString(),
+                        localizationsDelegates:
+                            AppLocalizations.localizationsDelegates,
+                        supportedLocales: AppLocalizations.supportedLocales,
+                        locale: Locale( localProvider.getLocal,
+                            ""),
+                      );
+                    }));
           },
         );
       },

@@ -1,8 +1,11 @@
+import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zafco_ksa/provider/localization_provider.dart';
 import '../../../../core/constant.dart';
 import '../../../../provider/shop_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DashBoardProductCard extends StatefulWidget {
   final bool? userFavourites;
@@ -57,8 +60,7 @@ class _ProductCardState extends State<DashBoardProductCard> {
 
   @override
   Widget build(BuildContext context) {
-    bool leftBound = quantity == 0;
-    bool rightBound = quantity >= int.parse(widget.stock) || quantity >= 100;
+var localizationProvider = Provider.of<LocalizationProvider>(context,listen: false);
     return Stack(
       children: [
         Container(
@@ -187,14 +189,14 @@ class _ProductCardState extends State<DashBoardProductCard> {
                           Row(
                             children: [
                               Expanded(
-                                  flex: 1,
+                                  flex: 2,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "SKU",
+                                      AppLocalizations.of(context)!.sku,
                                         style: TextStyle(
                                             color:
                                                 Theme.of(context).primaryColor),
@@ -208,7 +210,7 @@ class _ProductCardState extends State<DashBoardProductCard> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Year",
+                                      AppLocalizations.of(context)!.year,
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor),
                                   ),
@@ -222,7 +224,7 @@ class _ProductCardState extends State<DashBoardProductCard> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Stock",
+                                      AppLocalizations.of(context)!.stock,
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor),
                                   ),
@@ -244,7 +246,7 @@ class _ProductCardState extends State<DashBoardProductCard> {
               ),
               Row(
                 children: [
-                  Text("AED ${widget.price}.00",
+                  Text("AED ${widget.price}",
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),
                   Spacer(),
@@ -259,17 +261,21 @@ class _ProductCardState extends State<DashBoardProductCard> {
         if (widget.promotions.isNotEmpty)
           Positioned(
             top: 8,
-            child: Image.asset(
-              "assets/label.png",
-              height: widget.promotions.length > 1 ? 50 : 40,
-              width: 65,
-              fit: BoxFit.fill,
+            child: Transform.rotate(
+              angle:localizationProvider.isLTR? 0: math.pi,
+              child: Image.asset(
+                "assets/label.png",
+                height: widget.promotions.length > 1 ? 50 : 40,
+                width: 65,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         if (widget.promotions.isNotEmpty)
           Positioned(
             top: 10,
-            left: 8,
+right: localizationProvider.isLTR? 0: 8,
+left: localizationProvider.isLTR? 8: 0,
             child: GestureDetector(
               onTap: () => showDialog(
                   context: context,
@@ -288,7 +294,7 @@ class _ProductCardState extends State<DashBoardProductCard> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Offers",
+                                  AppLocalizations.of(context)!.offers,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 22),

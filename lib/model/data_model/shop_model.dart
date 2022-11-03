@@ -15,46 +15,53 @@ class ShopModel {
 
     products = json['products'] == null
         ? Products(
-            data: [],
-            total: 0,
-            to: null,
-            nextPageUrl: null,
-            lastPageUrl: null,
-            lastPage: null,
-            firstPageUrl: null,
-            currentPage: null,
-            from: null,
-            prevPageUrl: null)
+        data: [],
+        total: 0,
+        to: null,
+        nextPageUrl: null,
+        lastPageUrl: null,
+        lastPage: null,
+        firstPageUrl: null,
+        currentPage: null,
+        from: null,
+        prevPageUrl: null)
         : Products.fromJson(json['products']);
-    print("cp2");
+
     attributes =json['attributes'] == null  ?null : getAttributes(json['attributes']);
-    print("cp3");
+
     location =json['Select Location'] == null? null: List.from(json['Select Location'])
         .map((e) => FilterItem(id: e["id"].toString(), title: e["name"]))
         .toList();
-    print("cp4");
   }
 
   List<FilterModel> getAttributes(Map<String, dynamic> json) {
+    print(
+        "attribute ----------------------------------------------------------------");
     List<FilterModel> filterList = [];
 
     FilterModel rimSize = getAttributesFromList(
         title: "Select Rim Size", dataList: json["Select Rim Size"]);
 
     FilterModel size = getAttributesFromMap(
-        title: "Select Size", dataList: json["Select Size"]);
+        title: "Select Size", dataList: json["Select Size"], key: "size_id");
 
     FilterModel category = getAttributesFromMap(
-        title: "Select Category", dataList: json["Select Category"]);
+        title: "Select Category",
+        dataList: json["Select Category"],
+        key: "tyre_category_id");
 
     FilterModel pattern = getAttributesFromMap(
-        title: "Select Pattern", dataList: json["Select Pattern"]);
+        title: "Select Pattern",
+        dataList: json["Select Pattern"],
+        key: "tyre_pattern_id");
 
     FilterModel brand = getAttributesFromMap(
-        title: "Select Brand", dataList: json["Select Brand"]);
+        title: "Select Brand", dataList: json["Select Brand"], key: "brand_id");
 
     FilterModel segment = getAttributesFromMap(
-        title: "Select Segment", dataList: json["Select Segment"]);
+        title: "Select Segment",
+        dataList: json["Select Segment"],
+        key: "segment_id");
 
     FilterModel year = getAttributesFromList(
         title: "Select Year", dataList: json["Select Year"]);
@@ -82,21 +89,15 @@ class ShopModel {
   }
 
   FilterModel getAttributesFromMap(
-      {required List<dynamic> dataList, required String title}) {
+      {required List<dynamic> dataList,
+        required String title,
+        required String key}) {
     List<FilterItem> filterList = [];
     for (var data in dataList) {
       Map<String, dynamic> map = data;
-      int i = 0;
-      String id = "";
-      String title = "";
-      map.forEach((key, value) {
-        if (i == 0) {
-          id = value.toString();
-          i++;
-        } else {
-          title = value.toString();
-        }
-      });
+      String id = map[key].toString();
+      String title = map['name'];
+
       filterList.add(FilterItem(id: id, title: title));
     }
 
@@ -307,3 +308,4 @@ class FilterItem {
 
   FilterItem({required this.id, required this.title, this.isSelected = false});
 }
+

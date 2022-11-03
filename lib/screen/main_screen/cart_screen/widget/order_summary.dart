@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/constant.dart';
 
 import '../../../../model/data_model/cart_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderSummaryCard extends StatelessWidget {
   final OrderSummary orderSummary;
@@ -83,7 +84,7 @@ class OrderSummaryCard extends StatelessWidget {
             height: 12,
           ),
           Text(
-            "Order Summary",
+            AppLocalizations.of(context)!.orderSummary,
             style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 18,
@@ -96,7 +97,7 @@ class OrderSummaryCard extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          buildDetails(title: "Total Qty", data: orderSummary.orderQuantity.totalQuantity.toString()),
+          buildDetails(title: AppLocalizations.of(context)!.totalQty , data: orderSummary.orderQuantity.totalQuantity.toString()),
           SizedBox(
             height: 8,
           ),
@@ -124,7 +125,7 @@ class OrderSummaryCard extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          buildDetails(title: "Subtotal", data: "AED ${orderSummary.orderQuantity.subTotal.toStringAsFixed(2)}"),
+          buildDetails(title:  AppLocalizations.of(context)!.subTotal, data: "AED ${orderSummary.orderQuantity.subTotal.toStringAsFixed(2)}"),
           SizedBox(
             height: 8,
           ),
@@ -132,7 +133,7 @@ class OrderSummaryCard extends StatelessWidget {
           SizedBox(
             height: 6,
           ),
-          buildDetails(title: "VAT-Tax 5%", data: "AED ${orderSummary.orderQuantity.tax.toStringAsFixed(2)}"),
+          buildDetails(title:  AppLocalizations.of(context)!.vat5, data: "AED ${orderSummary.orderQuantity.tax.toStringAsFixed(2)}"),
           SizedBox(
             height: 8,
           ),
@@ -140,7 +141,7 @@ class OrderSummaryCard extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          buildDetails(title: "Total", data: "AED ${orderSummary.orderQuantity.grandTotal.toStringAsFixed(2)}"),
+          buildDetails(title:  AppLocalizations.of(context)!.total, data: "AED ${orderSummary.orderQuantity.grandTotal.toStringAsFixed(2)}"),
           SizedBox(
             height: 18,
           ),

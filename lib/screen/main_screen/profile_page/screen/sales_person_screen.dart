@@ -7,7 +7,8 @@ import '../../../../core/enum/connection_status.dart';
 import '../../../../provider/profile_provider.dart';
 import '../../../../widget/custom_icon_button.dart';
 import '../../../../widget/loading_idicator.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class SalesPersonScreen extends StatefulWidget {
   const SalesPersonScreen({Key? key}) : super(key: key);
 
@@ -32,8 +33,9 @@ class _PersonalDetailScreenState extends State<SalesPersonScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Sales Person",
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+          AppLocalizations.of(context)!.salesperson,
+
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20, color: Colors.black),
         ),
       ),
       body: Consumer<ProfileProvider>(builder: (context, data, _) {
@@ -73,7 +75,7 @@ class _PersonalDetailScreenState extends State<SalesPersonScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Salesperson",
+                              AppLocalizations.of(context)!.salesperson,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700, fontSize: 14),
                               ),
@@ -92,7 +94,7 @@ class _PersonalDetailScreenState extends State<SalesPersonScreen> {
                                       borderRadius:
                                       BorderRadius.all(Radius.circular(8))),
                                   child: Text(
-                                    "Send Mail",
+                                      AppLocalizations.of(context)!.sendMail,
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                         fontSize: 14),
@@ -190,7 +192,7 @@ class _PersonalDetailScreenState extends State<SalesPersonScreen> {
           );
         } else if (data.connectionStatus == ConnectionStatus.error) {
           return Center(
-            child: Text("Something went wrong"),
+            child: Text(AppLocalizations.of(context)!.wrongText),
           );
         } else {
           return Center(

@@ -5,6 +5,7 @@ import '../../../../provider/auth_provider.dart';
 import '../../../../screen/auth_screen/widget/auth_input_field.dart';
 
 import '../../core/enum/connection_status.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -45,7 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
               height: height * .04,
             ),
             Text(
-              "Lets Sign you in.",
+            AppLocalizations.of(context)!.letsSignYouIn,
+
               style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
@@ -55,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 8,
             ),
             Text(
-              "Welcome Back",
+              AppLocalizations.of(context)!.welcomeBack,
               style:
                   TextStyle(color: Colors.white.withOpacity(.9), fontSize: 13),
             ),
@@ -63,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 2,
             ),
             Text(
-              "You Have Been Missed.",
+              AppLocalizations.of(context)!.youHaveBeenMissed,
               style:
                   TextStyle(color: Colors.white.withOpacity(.8), fontSize: 13),
             ),
@@ -71,8 +73,8 @@ class _LoginScreenState extends State<LoginScreen> {
             AuthInputField(
               inputController: emailController,
               inputType: TextInputType.emailAddress,
-              hintText: "name@example.com",
-              label: "Email",
+              hintText: AppLocalizations.of(context)!.enterYourEmail,
+              label: AppLocalizations.of(context)!.email,
             ),
             SizedBox(
               height: 20,
@@ -80,8 +82,8 @@ class _LoginScreenState extends State<LoginScreen> {
             AuthInputField(
               inputController: passwordController,
               inputType: TextInputType.emailAddress,
-              hintText: "Enter your password",
-              label: "Password",
+              hintText: AppLocalizations.of(context)!.enterYourPassword,
+              label: AppLocalizations.of(context)!.password,
             ),
             Row(
               children: [
@@ -91,8 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context)
                           .pushNamed(Screen.forgotPasswordScreen.toString());
                     },
-                    child: const Text(
-                      "Forget Password?",
+                    child:  Text(
+                      AppLocalizations.of(context)!.forgotPasswordQ,
                       style: TextStyle(color: Colors.white),
                     ))
               ],
@@ -105,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                   text: TextSpan(children: [
                     TextSpan(
-                        text: "First Time to zafco? ",
+                        text: AppLocalizations.of(context)!.firstTimeToZafco +" ",
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.white.withOpacity(.9),
@@ -117,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             .pushNamed(Screen.signInScreen.toString());
                       },
                       child: Text(
-                        "Activate you account",
+                        AppLocalizations.of(context)!.activateYourAccount,
                         style: TextStyle(
                           color: Colors.blue,
                           fontSize: 13,
@@ -143,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: provider.connectionStatus == ConnectionStatus.none
                           ? Text(
-                              "Login",
+                        AppLocalizations.of(context)!.login,
                               style: TextStyle(color: Colors.white),
                             )
                           : CircularProgressIndicator(

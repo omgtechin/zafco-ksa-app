@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:number_paginator/number_paginator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:provider/provider.dart';
 import '../../../../provider/auth_provider.dart';
 import '../../../../provider/shop_provider.dart';
@@ -63,10 +65,10 @@ class _ShopScreenState extends State<ShopScreen> {
     return Scaffold(
         appBar: getAppBar(
             title: Text(
-              "Shop",
+            AppLocalizations.of(context)!.shop,
               style: TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
             context: context),
@@ -121,7 +123,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                         },
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          hintText: 'Search Here',
+                                          hintText:  AppLocalizations.of(context)!.search,
                                         ),
                                       ),
                                     ),
@@ -203,8 +205,8 @@ class _ShopScreenState extends State<ShopScreen> {
                                     ConnectionStatus.done) {
                                   if (shopData
                                       .shopModel.products.data.isEmpty) {
-                                    return const Center(
-                                      child: Text("No product found"),
+                                    return  Center(
+                                      child: Text( AppLocalizations.of(context)!.noProductsFound),
                                     );
                                   } else {
                                     return ListView.builder(
@@ -338,7 +340,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                 } else if (shopData.connectionStatus ==
                                     ConnectionStatus.error) {
                                   return Center(
-                                    child: Text("Something went wrong"),
+                                    child: Text(AppLocalizations.of(context)!.wrongText),
                                   );
                                 } else {
                                   return LoadingIndicator();

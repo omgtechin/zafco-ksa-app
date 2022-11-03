@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zafco_ksa/provider/localization_provider.dart';
 import '../../../../provider/shop_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class ShopFilterTags extends StatelessWidget {
@@ -9,8 +11,24 @@ class ShopFilterTags extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var shopProvider = Provider.of<ShopProvider>(context,);
+    var shopProvider = Provider.of<ShopProvider>(context,listen: false);
+    var localizationProvider = Provider.of<LocalizationProvider>(context,listen: false);
 
+   String getTitle(String title){
+      String lowerTitle = title.toLowerCase().trim();
+      if(lowerTitle == "all"){
+        return AppLocalizations.of(context)!.all;
+      }else if(lowerTitle == "favourites"){
+        return AppLocalizations.of(context)!.favourites;
+      }else if(lowerTitle == "frequently brought"){
+        return AppLocalizations.of(context)!.frequentlyBrought;
+      }else if(lowerTitle == "best sellers"){
+        return AppLocalizations.of(context)!.bestSellers;
+      }else if(lowerTitle == "offers"){
+        return AppLocalizations.of(context)!.offers;
+      }
+      return title;
+    }
     return Container(
       height: 35,
       child: SingleChildScrollView(
@@ -19,7 +37,7 @@ class ShopFilterTags extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SizedBox(
+         if(localizationProvider.isLTR)  SizedBox(
               width: 12,
             ),
             ...shopProvider.tagList.map((filter) {
@@ -35,7 +53,7 @@ class ShopFilterTags extends StatelessWidget {
                   child: Container(
                     child: Center(
                         child: Text(
-                      filter.title,
+                          getTitle( filter.title),
                       style: TextStyle(
                           color: isSelected
                               ? Colors.white
@@ -51,7 +69,10 @@ class ShopFilterTags extends StatelessWidget {
                   ),
                 ),
               );
-            }).toList()
+            }).toList(),
+            if(! localizationProvider.isLTR)  SizedBox(
+              width: 12,
+            ),
           ],
         ),
       ),

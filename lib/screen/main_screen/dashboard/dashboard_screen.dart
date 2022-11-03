@@ -14,6 +14,7 @@ import '../../../core/app_bar.dart';
 import '../../../core/enum/connection_status.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/cart_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -87,7 +88,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           );
         } else if(data.connectionStatus == ConnectionStatus.error){
           return Center(
-            child: Text("Something went wrong"),
+            child: Text(AppLocalizations.of(context)!.wrongText),
           );
         }else {
 

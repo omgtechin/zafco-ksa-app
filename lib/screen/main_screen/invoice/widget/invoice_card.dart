@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import '../../../../model/data_model/invoice_model.dart';
 
 import '../../../../core/constant.dart';
 import '../../../../core/services/pdf_download_service.dart';
+import '../../../../model/data_model/invoice_model.dart';
 import '../../../../provider/auth_provider.dart';
 
 class InvoiceCard extends StatelessWidget {
@@ -14,7 +15,29 @@ class InvoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Constant _constants = Constant();
+
+    String getTitle(String title) {
+      String lowerCase = title.toLowerCase().trim();
+      print(lowerCase);
+      if (lowerCase == "all") {
+        return AppLocalizations.of(context)!.all;
+      } else if (lowerCase == "paid") {
+        return AppLocalizations.of(context)!.paid;
+      } else if (lowerCase == "in payment") {
+        return AppLocalizations.of(context)!.inPayment;
+      } else if (lowerCase == "partially paid") {
+        return AppLocalizations.of(context)!.partiallyPaid;
+      } else if (lowerCase == "reversed") {
+        return AppLocalizations.of(context)!.reversed;
+      } else if (lowerCase == "not paid") {
+        return AppLocalizations.of(context)!.notPaid;
+      } else {
+        return title;
+      }
+    }
+
     buildDetails({required String title, required String data}) {
       return Expanded(
           child: Column(
@@ -56,7 +79,7 @@ class InvoiceCard extends StatelessWidget {
                 height: 4,
               ),
               Text(
-                "Invoice Number : ${invoiceData.invoiceCode}",
+                "${AppLocalizations.of(context)!.invoiceNumber} : ${invoiceData.invoiceCode}",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
               ),
               SizedBox(
@@ -65,12 +88,12 @@ class InvoiceCard extends StatelessWidget {
               Row(
                 children: [
                   buildDetails(
-                      title: "Invoice Date", data: invoiceData.invoiceDate),
+                      title:   AppLocalizations.of(context)!.price, data: invoiceData.invoiceDate),
                   buildDetails(
-                      title: "Order Date",
+                      title:  AppLocalizations.of(context)!.orderDate,
                       data: invoiceData.createdAt.split("T")[0]),
                   buildDetails(
-                      title: "Price", data: "AED ${invoiceData.price}"),
+                      title:  AppLocalizations.of(context)!.price, data: "AED ${invoiceData.price}"),
                 ],
               ),
               SizedBox(
@@ -90,7 +113,7 @@ class InvoiceCard extends StatelessWidget {
 
                     child: Center(
                       child: Text(
-                          _constants.getFormattedString(str: invoiceData.status),
+                        getTitle(  _constants.getFormattedString(str: invoiceData.status)),
                           style: TextStyle(
                               color: _constants.getStatusColor(
                                   status: invoiceData.status))),
@@ -133,7 +156,10 @@ class InvoiceCard extends StatelessWidget {
                             name: "invoice_${invoiceData.invoiceId}.pdf");
                         Navigator.of(context).pop();
                       },
-                      child: Text("Download",style: TextStyle(color: Colors.white),),
+                      child: Text(
+                        AppLocalizations.of(context)!.download,
+                        style: TextStyle(color: Colors.white),
+                      ),
                       style: ElevatedButton.styleFrom(
                           primary: Theme.of(context).primaryColor,
                           side: BorderSide(

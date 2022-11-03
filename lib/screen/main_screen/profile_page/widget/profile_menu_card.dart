@@ -1,14 +1,17 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+
 import '../../../../core/constant.dart';
 
 class ProfileMenuCard extends StatelessWidget {
   final String img;
   final String title;
   final VoidCallback onTap;
-  const ProfileMenuCard({Key? key, required this.img, required this.title, required this.onTap}) : super(key: key);
+
+  const ProfileMenuCard(
+      {Key? key, required this.img, required this.title, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +31,17 @@ class ProfileMenuCard extends StatelessWidget {
 
                 decoration: BoxDecoration(
 
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                  border: Border.all(color: Theme.of(context).primaryColor)
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
+                    border: Border.all(color: Theme
+                        .of(context)
+                        .primaryColor)
                 ),
-                child: Image.asset(img,height: 20, width: 20,),),
+                child: Image.asset(img, height: 20, width: 20, color: Theme
+                    .of(context)
+                    .primaryColor),),
               SizedBox(width: 12,),
               Expanded(child: Text(title,
-              style: TextStyle(fontWeight: FontWeight.w700,fontSize: 14),))
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),))
             ],
           ),
         ),

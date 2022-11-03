@@ -13,7 +13,6 @@ class ShippingDetailModel {
 
   ShippingDetailModel.fromJson(Map<String, dynamic> json) {
     orderQuantity = OrderQuantity.fromJson(json['order_quantity']);
-
     billingAddress = BillingAddress.fromJson(json['billing_address']);
     shippingAddresses = List.from(json['shippingAddresses'])
         .map((e) => ShippingAddresses.fromJson(e))
@@ -71,7 +70,7 @@ class ShippingAddresses {
   late final int status;
   late final int customerId;
   late final String name;
-  late final String email;
+  late final String? email;
   late final String phone;
   late final String? emailVerifiedAt;
   late final String address;
@@ -94,7 +93,9 @@ class ShippingAddresses {
   late final String updatedAt;
 
   ShippingAddresses.fromJson(Map<String, dynamic> json) {
+
     userType = json['user_type'];
+
     id = json['id'];
     status = json['status'];
     customerId = json['customer_id'];

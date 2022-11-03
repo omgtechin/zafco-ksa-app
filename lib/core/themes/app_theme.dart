@@ -34,7 +34,7 @@ class AppTheme {
     outlinedButtonTheme: _getOutlinedButtonData(),
     cardTheme: _getCardTheme(),
     appBarTheme: _getAppBarTheme(),
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: lightAccentColor,onPrimary: Colors.black),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: lightAccentColor),
   );
 
   static final darkTheme = ThemeData(

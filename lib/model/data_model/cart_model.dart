@@ -82,9 +82,7 @@ class CartItem {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     promotionQuantity = json['promotion_quantity'].toString();
-
     cloned = json['cloned'];
-
     promotion = json['promotion'].toString();
     totalPrice = json['total_price'];
     product = Product.fromJson(json['product']);
@@ -101,12 +99,10 @@ class Product {
     required this.name,
     required this.materialType,
     required this.matCategoryId,
-    this.tyrePatternId,
     required this.rimSize,
     required this.productSizeId,
     required this.image_256,
     this.tyreApplicationId,
-    required this.segmentId,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -119,12 +115,10 @@ class Product {
   late final String name;
   late final String materialType;
   late final int matCategoryId;
-  late final int? tyrePatternId;
   late final String rimSize;
   late final int productSizeId;
   late final String image_256;
   late final int? tyreApplicationId;
-  late final int segmentId;
   late final String createdAt;
   late final String updatedAt;
 
@@ -132,19 +126,19 @@ class Product {
     id = json['id'];
     brandId = json['brand_id'];
     productId = json['product_id'];
+
     productTmplId = json['product_tmpl_id'];
     masterMaterial = json['master_material'];
+
     name = json['name'];
     materialType = json['material_type'];
     matCategoryId = json['mat_category_id'];
-    tyrePatternId = null;
     rimSize = json['rim_size'];
     productSizeId = json['product_size_id'];
     image_256 = json['image_256'];
-    tyreApplicationId = null;
-    segmentId = json['segment_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+
   }
 }
 

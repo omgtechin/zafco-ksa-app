@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/themes/app_theme.dart';
 import '../../../../model/data_model/cart_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/constant.dart';
 import '../../../../provider/cart_provider.dart';
+import '../../../../provider/localization_provider.dart';
 import '../../shop/widget/quantity_selector.dart';
 
 class CartProductCard extends StatefulWidget {
@@ -28,6 +30,7 @@ class _ProductCardState extends State<CartProductCard> {
 
   @override
   Widget build(BuildContext context) {
+    var localizationProvider = Provider.of<LocalizationProvider>(context,listen: false);
     bool isFreeProduct = widget.product.cloned;
     bool leftBound = quantity == 1 || isFreeProduct;
     bool rightBound = quantity >= widget.product.stock || quantity >= 100 || isFreeProduct;
@@ -107,7 +110,7 @@ class _ProductCardState extends State<CartProductCard> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "SKU",
+                                AppLocalizations.of(context)!.sku,
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.w700),
@@ -123,7 +126,7 @@ class _ProductCardState extends State<CartProductCard> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Year",
+                              AppLocalizations.of(context)!.year,
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.w700),
@@ -140,7 +143,7 @@ class _ProductCardState extends State<CartProductCard> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Stock",
+                                AppLocalizations.of(context)!.stock,
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.w700),
@@ -184,7 +187,7 @@ class _ProductCardState extends State<CartProductCard> {
                           width: 8,
                         ),
                         Text(
-                          "Offer Applied",
+    AppLocalizations.of(context)!.offerApplied,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
                               color: Theme.of(context).priceColor),
@@ -215,8 +218,12 @@ class _ProductCardState extends State<CartProductCard> {
                           ? Theme.of(context).primaryColor.withOpacity(.5)
                           : Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          bottomLeft: Radius.circular(8))),
+                        topRight: Radius.circular(localizationProvider.isLTR?0: 8),
+                        bottomRight: Radius.circular(localizationProvider.isLTR?0: 8),
+                        topLeft: Radius.circular(localizationProvider.isLTR?8: 0),
+                        bottomLeft: Radius.circular(localizationProvider.isLTR?8: 0),
+
+                      )),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 2.0, vertical: 4),
@@ -286,9 +293,13 @@ class _ProductCardState extends State<CartProductCard> {
                       color: rightBound
                           ? Theme.of(context).primaryColor.withOpacity(.5)
                           : Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(8),
-                          bottomRight: Radius.circular(8))),
+                      borderRadius:  BorderRadius.only(
+                        topRight: Radius.circular(localizationProvider.isLTR?8: 0),
+                        bottomRight: Radius.circular(localizationProvider.isLTR?8: 0),
+                        topLeft: Radius.circular(localizationProvider.isLTR?0: 8),
+                        bottomLeft: Radius.circular(localizationProvider.isLTR?0: 8),
+
+                      )),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 2.0, vertical: 4),
