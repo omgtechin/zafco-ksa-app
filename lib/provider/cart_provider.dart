@@ -2,17 +2,17 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+
 import '../../core/constant.dart';
 import '../../model/data_model/cart_model.dart';
 import '../../provider/shop_provider.dart';
-
 import '../core/enum/connection_status.dart';
 import '../core/routes.dart';
 import '../model/data_model/shipping_info_modal.dart';
 import 'auth_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartProvider with ChangeNotifier {
   ConnectionStatus connectionStatus = ConnectionStatus.none;
@@ -23,6 +23,8 @@ class CartProvider with ChangeNotifier {
   late ShippingDetailModel shippingDetailModel;
   int selectedShippingAddress = 0;
   String deliveryType = "Delivery";
+
+  TextEditingController newAddressController = TextEditingController();
 
   final Constant _constant = Constant();
 
@@ -193,6 +195,40 @@ class CartProvider with ChangeNotifier {
     }
   }
 
+  addNewAddress({required String address}) {
+    shippingDetailModel = ShippingDetailModel(
+        orderQuantity: shippingDetailModel.orderQuantity,
+        billingAddress: shippingDetailModel.billingAddress,
+        shippingAddresses: [
+          ...shippingDetailModel.shippingAddresses,
+          ShippingAddresses(address: address, customerId: null)
+        ]);
+    selectedShippingAddress = 1;
+    notifyListeners();
+  }
+
+  editNewAddress({required String address, required int index}) {
+    shippingDetailModel.shippingAddresses.removeAt(index);
+    shippingDetailModel.shippingAddresses
+        .add(ShippingAddresses(address: address, customerId: null));
+    shippingDetailModel = ShippingDetailModel(
+        orderQuantity: shippingDetailModel.orderQuantity,
+        billingAddress: shippingDetailModel.billingAddress,
+        shippingAddresses: shippingDetailModel.shippingAddresses);
+
+    notifyListeners();
+  }
+
+  deleteNewAddress({required int index}) {
+    shippingDetailModel.shippingAddresses.removeAt(index);
+    shippingDetailModel = ShippingDetailModel(
+        orderQuantity: shippingDetailModel.orderQuantity,
+        billingAddress: shippingDetailModel.billingAddress,
+        shippingAddresses: shippingDetailModel.shippingAddresses);
+    selectedShippingAddress = 0;
+    notifyListeners();
+  }
+
   getCartCount({required BuildContext context}) async {
     try {
       var userProvider = Provider.of<AuthProvider>(context, listen: false);
@@ -224,7 +260,6 @@ class CartProvider with ChangeNotifier {
       print(e);
     }finally{
       notifyListeners();
-
     }
   }
 }

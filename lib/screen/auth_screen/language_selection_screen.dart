@@ -69,7 +69,14 @@ class LanguageSelectionScreen extends StatelessWidget {
             ),
             Spacer(),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                var localizationProvider =
+                Provider.of<LocalizationProvider>(context, listen: false);
+                String? local = await localizationProvider.getLocalFromStorage();
+                if(local == null){
+                await  localizationProvider.saveLocalToStorage("en");
+                }
+
                 Navigator.of(context)
                     .pushReplacementNamed(Screen.initialScreen.toString());
               },

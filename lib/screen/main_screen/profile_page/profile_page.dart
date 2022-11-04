@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:zafco_ksa/core/constant.dart';
 import 'package:zafco_ksa/provider/localization_provider.dart';
 import 'package:zafco_ksa/screen/main_screen/profile_page/widget/language_selection_dialog.dart';
 
@@ -44,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
             ProfileMenuCard(
                 onTap: () => Navigator.of(context)
                     .pushNamed(Screen.catalogueScreen.toString()),
-                img: "assets/icons/cart.png",
+           img: "assets/icons/catalog.png",
                 title: AppLocalizations.of(context)!.catalogue),
             ProfileMenuCard(
                 onTap: () => Navigator.of(context)
@@ -86,6 +87,9 @@ class ProfileScreen extends StatelessWidget {
                   AppLocalizations.of(context)!.deactivateAccount,
                   style: TextStyle(color: Colors.red),
                 )),
+
+            SizedBox(height: 20,),
+            Text("Version: ${Constant().appVersion}",style: TextStyle(fontWeight: FontWeight.w700, color: Colors.grey),)
           ],
         ),
       ),

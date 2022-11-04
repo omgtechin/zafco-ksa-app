@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:number_paginator/number_paginator.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:provider/provider.dart';
+
 import '../../../../provider/auth_provider.dart';
 import '../../../../provider/shop_provider.dart';
 import '../../../../screen/main_screen/shop/widget/filter_modal.dart';
@@ -13,6 +13,8 @@ import '../../../../screen/main_screen/shop/widget/filter_tags.dart';
 import '../../../../screen/main_screen/shop/widget/shop_product_card.dart';
 import '../../../../screen/main_screen/shop/widget/sort_modal.dart';
 import '../../../../widget/loading_idicator.dart';
+
+
 
 import '../../../core/app_bar.dart';
 import '../../../core/enum/connection_status.dart';
@@ -263,7 +265,21 @@ class _ShopScreenState extends State<ShopScreen> {
                                                         height: 22,
                                                       ),
                                                       Text(
-                                                        "Showing ${shopData.shopModel.products.from} to ${shopData.shopModel.products.to} of ${shopData.shopModel.products.total} Products",
+                                                        "${AppLocalizations.of(
+                                                            context)!
+                                                            .showing} ${shopData
+                                                            .shopModel.products
+                                                            .from} ${AppLocalizations
+                                                            .of(context)!
+                                                            .to} ${shopData
+                                                            .shopModel.products
+                                                            .to} ${AppLocalizations
+                                                            .of(context)!
+                                                            .ofKey} ${shopData
+                                                            .shopModel.products
+                                                            .total} ${AppLocalizations
+                                                            .of(context)!
+                                                            .invoices}",
                                                         style: TextStyle(
                                                           fontSize: 16,
                                                         ),

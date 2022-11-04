@@ -53,14 +53,59 @@ class _ShippingAddressState extends State<ShippingAddress> {
                       provider.selectedShippingAddress = index;
                        });
                     },
-                    child: AddressCard(
+                    child:  AddressCard(
                       enabled: index == provider.selectedShippingAddress,
                       content: detailedAddress,
                       title: "Address ${index + 1}",
+                      index: index,
                     )),
                 SizedBox(
                   height: 12,
                 ),
+                if(provider.shippingDetailModel.shippingAddresses.length == 1)   Center(
+                  child: TextButton.icon(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (builder) {
+                            return AlertDialog(
+                              title: Text("Add new address"),
+                              content: TextField(
+                                controller: provider.newAddressController,
+                                maxLines: 3,
+                                decoration:
+                                InputDecoration(border: OutlineInputBorder()),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("Cancel"),
+                                  style: TextButton.styleFrom(
+                                      primary: Theme.of(context).primaryColor),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    provider.addNewAddress(
+                                        address: provider.newAddressController.text);
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("Save"),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Theme.of(context).primaryColor),
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                    icon: Icon(Icons.add),
+                    label: Text("Add new address"),
+                    style:
+                    TextButton.styleFrom(primary: Theme.of(context).primaryColor),
+                  ),
+                ),
+
               ],
             );
           }).toList()

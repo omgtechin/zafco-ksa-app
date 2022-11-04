@@ -24,7 +24,7 @@ class BillingAddress extends StatelessWidget {
             fontSize: 18,fontWeight: FontWeight.w700,color: Theme.of(context).primaryColor
           ),),
           SizedBox(height: 12,),
-          AddressCard(enabled: true, content: billingAddress, title: 'Address 1',),
+          AddressCard(enabled: true, content: billingAddress, title: 'Address 1',index: 0),
           SizedBox(height: 18,),
 
         ],
