@@ -62,6 +62,7 @@ class OrderDetails {
     userId = json['user_id'];
     customerId = json['customer_id'];
     status = json['status'];
+
     currency = json['currency'];
     amountTotal = json['amount_total'];
     invoiceCustomerId = json['invoice_customer_id'];
@@ -69,15 +70,19 @@ class OrderDetails {
     updatedAt = json['updated_at'];
     trackingUrl = json['tracking_url'];
     paymentTerms = json['payment_term'];
+
     amountWithoutTax = json['amount_without_tax'];
     taxAmount = json['tax_amount'];
+
     orderItems = List.from(json['order_items'])
         .map((e) => OrderItems.fromJson(e))
         .toList();
+
     invoiceAddress = InvoiceAddress.fromJson(json['invoice_address']);
     shipAddress = ShipAddress.fromJson(json['ship_address']);
-
+    print("cp1");
     user = User.fromJson(json['user']);
+    print("cp8");
   }
 }
 
@@ -171,19 +176,11 @@ class User {
     required this.name,
     required this.phone,
     required this.address,
-    required this.childIds,
     required this.pricelist,
     required this.type,
     required this.payerCustomerId,
     required this.propertyPaymentTermId,
     required this.customerSalesperson,
-    required this.propertyAccountPositionId,
-    required this.accountManagerId,
-    required this.empRespId,
-    required this.customerBrands,
-    required this.brandFilterFor,
-    required this.createdAt,
-    required this.updatedAt,
     required this.salesPerson,
   });
 
@@ -194,19 +191,12 @@ class User {
   late final String name;
   late final String phone;
   late final String address;
-  late final List<int> childIds;
   late final int pricelist;
   late final String type;
   late final int payerCustomerId;
   late final int propertyPaymentTermId;
   late final int customerSalesperson;
-  late final int propertyAccountPositionId;
-  late final int accountManagerId;
-  late final int empRespId;
-  late final List<int> customerBrands;
-  late final String brandFilterFor;
-  late final String createdAt;
-  late final String updatedAt;
+
   late final SalesPerson? salesPerson;
 
   User.fromJson(Map<String, dynamic> json) {
@@ -217,19 +207,14 @@ class User {
     name = json['name'];
     phone = json['phone'];
     address = json['address'];
-    childIds = List.castFrom<dynamic, int>(json['child_ids']);
+
     pricelist = json['pricelist'];
     type = json['type'];
+
     payerCustomerId = json['payer_customer_id'];
     propertyPaymentTermId = json['property_payment_term_id'];
     customerSalesperson = json['customer_salesperson'];
-    propertyAccountPositionId = json['property_account_position_id'];
-    accountManagerId = json['account_manager_id'];
-    empRespId = json['emp_resp_id'];
-    customerBrands = List.castFrom<dynamic, int>(json['customer_brands']);
-    brandFilterFor = json['brand_filter_for'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+
     salesPerson = json['sales_person'] == null
         ? null
         : SalesPerson.fromJson(json['sales_person']);

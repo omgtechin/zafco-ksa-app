@@ -167,10 +167,11 @@ class CartProvider with ChangeNotifier {
         "selected_shipping_address": shippingDetailModel
             .shippingAddresses[selectedShippingAddress].customerId,
         "selected_billing_address":
-            shippingDetailModel.billingAddress.customerId,
+        shippingDetailModel.billingAddress.customerId,
         "delivery_type": deliveryType.toLowerCase(),
       };
 
+      print(jsonEncode(postBody));
       var response = await http.post(
         Uri.parse("$baseUrl/api/saveOrder"),
         headers: {
@@ -181,10 +182,20 @@ class CartProvider with ChangeNotifier {
         },
         body: jsonEncode(postBody),
       );
-      print(response.body);
 
-      Navigator.of(context)
-          .pushReplacementNamed(Screen.orderPlacedScreen.toString());
+      Map<String, dynamic> orderResponse = jsonDecode(response.body);
+      print(orderResponse);
+      if(orderResponse["success"] != null && orderResponse["success"] == true){
+        Constant().getToast(title: orderResponse["msg"]);
+        Navigator.of(context)
+            .pushReplacementNamed(Screen.orderPlacedScreen.toString());
+      }else{
+        if(orderResponse["msg"] != null){
+          Constant().getToast(title: orderResponse["msg"]);
+        }else{
+          Constant().getToast(title:AppLocalizations.of(context)!.wrongText);
+        }
+      }
       buttonLoadingStatus = ConnectionStatus.done;
       notifyListeners();
     } catch (e) {

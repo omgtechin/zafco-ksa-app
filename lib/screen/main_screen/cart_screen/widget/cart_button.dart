@@ -29,7 +29,7 @@ class CartButton extends StatelessWidget {
             onPressed: () => onTap(),
             child: title,
             style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor,
+                primary: Theme.of(context).primaryColor,
                 maximumSize: Size(200, 45),
                 minimumSize: Size(150, 45)),
           )

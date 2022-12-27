@@ -388,7 +388,7 @@ class _ProductCardState extends State<ShopProductCard> {
                             style: TextStyle(color: Colors.white),
                           ),
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor),
+                        primary: Theme.of(context).primaryColor),
                   ),
                 ],
               ),

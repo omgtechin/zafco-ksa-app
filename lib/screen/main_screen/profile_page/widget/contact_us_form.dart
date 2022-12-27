@@ -175,7 +175,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 50),
-            backgroundColor: Theme.of(context).primaryColor),
+            primary: Theme.of(context).primaryColor),
         onPressed: () async {
           bool isValid = formKey.currentState!.validate();
           setState(() {
