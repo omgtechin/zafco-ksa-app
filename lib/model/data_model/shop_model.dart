@@ -30,7 +30,7 @@ class ShopModel {
     attributes =json['attributes'] == null  ?null : getAttributes(json['attributes']);
 
     location =json['Select Location'] == null? null: List.from(json['Select Location'])
-        .map((e) => FilterItem(id: e["id"].toString(), title: e["name"]))
+        .map((e) => FilterItem(id: e["id"].toString(), title: e["name"]??""))
         .toList();
   }
 
