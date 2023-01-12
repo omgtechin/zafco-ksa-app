@@ -279,7 +279,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                                             .shopModel.products
                                                             .total} ${AppLocalizations
                                                             .of(context)!
-                                                            .invoices}",
+                                                            .products}",
                                                         style: TextStyle(
                                                           fontSize: 16,
                                                         ),

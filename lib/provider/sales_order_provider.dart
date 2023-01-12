@@ -210,7 +210,6 @@ class SalesOrderProvider with ChangeNotifier {
       downloadPdfStatus = ConnectionStatus.active;
       notifyListeners();
       var userProvider = Provider.of<AuthProvider>(context, listen: false);
-
       await service
           .downloadFile(url: url, name: fileName, postBody: postBody, headers: {
         "Content-Type": "application/json",
