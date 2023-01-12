@@ -41,11 +41,15 @@ try{
       );
       final Response response;
 
+
       if (postBody == null) {
         response = await Dio().get(url, options: options);
       } else {
         response = await Dio().post(url, data: postBody, options: options);
       }
+
+      print("raw file");
+      print(response);
 
       final raf = file.openSync(mode: FileMode.write);
       raf.writeFromSync(response.data);
